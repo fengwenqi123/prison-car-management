@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="29px" viewBox="0 0 30 29" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50 (54983) - http://www.bohemiancoding.com/sketch -->
+    <title>Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="任务" transform="translate(-147.000000, -8.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <g transform="translate(94.000000, 0.000000)" id="Group-4">
+                <g>
+                    <g>
+                        <g>
+                            <g id="Group-14" transform="translate(32.000000, 0.000000)">
+                                <path d="M21.6,12.675037 L26.3559633,36.9 L29.9229358,36.9 L27.0165138,24.3241995 C27.0165138,24.3241995 30.3192661,21.4119089 34.2825688,22.4709237 C34.2825688,22.4709237 36.5284404,23.1328079 37.8495413,24.3241995 C37.8495413,24.3241995 40.359633,25.9127217 42.6055046,23.6623153 C42.6055046,23.6623153 44.9834862,21.8090395 47.2293578,18.4996183 C47.2293578,18.4996183 49.0788991,16.116835 49.8715596,14.9254434 C49.8715596,14.9254434 50.4,14.1311823 50.4,13.9988055 C50.4,13.9988055 43.0018349,17.7053572 34.546789,10.6893843 C34.546789,10.6893843 32.5651376,6.9828326 28.733945,8.43897791 L21.6,12.675037 Z" id="Shape"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

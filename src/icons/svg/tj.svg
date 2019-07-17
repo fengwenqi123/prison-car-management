@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51 (57462) - http://www.bohemiancoding.com/sketch -->
+    <title>统计</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-4" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="首页-海事负责人" transform="translate(-1498.000000, -345.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <g id="警情" transform="translate(1457.000000, 333.000000)">
+                <g id="Group-5" transform="translate(19.100000, 0.000000)">
+                    <g id="警报" transform="translate(21.000000, 11.000000)">
+                        <g id="统计">
+                            <rect id="Rectangle-path" opacity="0" x="0" y="0" width="29" height="29"></rect>
+                            <path d="M14.7713086,14.634918 L14.7713086,1.24459277 C21.8719189,1.88582129 27.5204053,7.53430762 28.1616338,14.634918 L14.7713086,14.634918 Z M26.0045322,16.7965225 L13.6728486,16.7965225 C13.0508496,16.7965225 12.5465781,16.2922793 12.5465781,15.670252 C12.5465781,15.670252 12.5465781,15.670252 12.5465781,15.670252 L12.5465781,3.33780371 C6.23358398,3.90763672 1.28409961,9.20783984 1.28409961,15.6694873 C1.28409961,22.5118164 6.83199219,28.0582646 13.6728486,28.0582363 C20.1344961,28.0582363 25.4353789,23.1102529 26.0045322,16.7964658 L26.0045322,16.7965225 Z" id="Shape"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

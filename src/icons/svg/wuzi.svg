@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="33px" height="36px" viewBox="0 0 33 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>物资储备</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="index" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="7-要素首页" transform="translate(-234.000000, -456.000000)" fill="#01579B" fill-rule="nonzero">
+            <g id="功能" transform="translate(21.751634, 133.437908)">
+                <g id="row4" transform="translate(74.457516, 319.581699)">
+                    <g id="物资储备" transform="translate(125.490196, 0.000000)">
+                        <g transform="translate(10.039216, 0.418301)">
+                            <rect id="Rectangle-path" opacity="0" x="0" y="0" width="40.1568627" height="40.1568627"></rect>
+                            <path d="M18.8557811,2.52034298 L2.51045102,10.0414027 L2.51045102,30.0976424 L18.8367998,37.6187424 L35.1017502,30.0976424 L35.1017502,10.0414027 L18.8557811,2.52034298 Z M17.5526508,34.2088453 L5.01747094,28.5537342 L5.01747094,12.5484628 L17.5526508,17.5625027 L17.5526508,34.2088453 Z M6.85139616,10.6313087 L18.8557811,5.30425749 L30.6284574,10.6433475 L18.8768893,15.3765199 L6.85139616,10.6313087 Z M32.5948105,28.6741232 L20.0596707,34.2931176 L20.0596707,17.5625027 L32.5948105,12.5484628 L32.5948105,28.6741232 Z" id="Shape"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

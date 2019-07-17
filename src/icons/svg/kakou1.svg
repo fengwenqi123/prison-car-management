@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="58px" height="57px" viewBox="0 0 58 57" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>卡口</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="常用" transform="translate(-243.000000, -100.000000)">
+            <g id="间距-&lt;h40-&gt;">
+                <g transform="translate(32.000000, 100.000000)">
+                    <g id="Group-6" transform="translate(208.000000, 0.000000)">
+                        <g id="卡口" transform="translate(3.000000, 0.000000)">
+                            <circle id="Oval" fill="#1890FF" cx="28.92" cy="28.5" r="28.5"></circle>
+                            <g id="卡口摄像头" transform="translate(10.680000, 10.260000)" fill="#FFFFFF" fill-rule="nonzero">
+                                <rect id="Rectangle-path" opacity="0" x="0" y="0" width="36.48" height="36.48"></rect>
+                                <path d="M9.975,22.949625 L6.9825,22.949625 L6.9825,19.209 L3.99,18.6568125 L3.99,30.70875 L6.9825,29.73975 L6.9825,25.5823125 L11.8275,25.5823125 L14.3925,22.1195625 L10.9725,20.3169375 L9.975,22.949625 Z M25.5075,23.64075 L32.49,19.344375 L10.83,5.77125 L8.265,5.77125 L4.845,10.8976875 L4.845,12.7003125 L23.94,23.78325 L25.5075,23.64075 Z M22.9425,24.60975 L6.555,14.3604375 L4.845,16.1630625 L23.94,27.246 L25.65,27.246 L26.505,26.412375 L27.36,23.918625 L24.795,25.72125 C23.6514375,24.887625 22.9425,24.60975 22.9425,24.60975 Z" id="Shape"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

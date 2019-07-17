@@ -1,0 +1,151 @@
+#app {
+    // 主体区域
+    .main-container {
+        min-height: 100%;
+        transition: margin-left .28s;
+        margin-left: 180px;
+        position: relative;
+    }
+    // 侧边栏
+    .sidebar-container {
+        transition: width 0.28s;
+        width: 180px !important;
+        height: calc(100% - 68px);
+        position: fixed;
+        font-size: 0px;
+        top: 68px;
+        bottom: 0;
+        left: 0;
+        z-index: 1001;
+        overflow: hidden;
+        //reset element-ui css
+        .horizontal-collapse-transition {
+            transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
+        }
+        .el-menu--inline {
+            background: #f5f5f5 !important;
+        }
+        .scrollbar-wrapper {
+            height: calc(100% + 15px);
+            .el-scrollbar__view {
+                height: 100%;
+            }
+        }
+        .is-horizontal {
+            display: none;
+        }
+        a {
+            display: inline-block;
+            width: 100%;
+            overflow: hidden;
+        }
+        .svg-icon {
+            margin-right: 16px;
+        }
+        .el-menu {
+            border: none;
+            height: 100%;
+            width: 100% !important;
+        }
+    }
+    .hideSidebar {
+        .logo {
+            width: 36px !important;
+            img {
+                display: none;
+            }
+        }
+        .tags-view-container .lefts {
+            left: 36px;
+        }
+        .hamburger-container {
+            width: 36px!important;
+        }
+        .sidebar-container {
+            width: 36px !important;
+        }
+        .main-container {
+            margin-left: 36px!important;
+        }
+        .submenu-title-noDropdown {
+            padding-left: 10px !important;
+            position: relative;
+            .el-tooltip {
+                padding: 0 10px !important;
+            }
+        }
+        .el-submenu {
+            overflow: hidden;
+            &>.el-submenu__title {
+                // color: #778899 !important;
+                padding-left: 10px !important;
+                .el-submenu__icon-arrow {
+                    display: none;
+                }
+            }
+        }
+        .el-menu--collapse {
+            .el-submenu {
+                &>.el-submenu__title {
+                    &>span {
+                        height: 0;
+                        width: 0;
+                        overflow: hidden;
+                        visibility: hidden;
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+    }
+    .sidebar-container .nest-menu .el-submenu>.el-submenu__title,
+    .sidebar-container .el-submenu .el-menu-item.is-active {
+        background-color: #409EFF !important;
+        // color: #fff !important;
+    }
+    .sidebar-container .nest-menu .el-submenu>.el-submenu__title,
+    .sidebar-container .el-submenu .el-menu-item {
+        min-width: 180px !important;
+        background-color: $subMenuBg !important;
+        &:hover {
+            background-color: $menuHover !important;
+            color: #fff !important;
+        }
+    }
+    .el-submenu__title:hover {
+        background-color: $menuHover !important;
+        color: #fff !important;
+    }
+    .el-menu--collapse .el-menu .el-submenu {
+        min-width: 180px !important;
+        &:hover {
+            background-color: $menuHover !important;
+            color: #fff !important;
+        }
+    }
+    // .el-menu-item {
+    //     background-color: #409EFF;
+    // }
+    //适配移动端
+    .mobile {
+        .main-container {
+            margin-left: 0px;
+        }
+        .sidebar-container {
+            transition: transform .28s;
+            width: 180px !important;
+        }
+        &.hideSidebar {
+            .sidebar-container {
+                transition-duration: 0.3s;
+                transform: translate3d(-180px, 0, 0);
+            }
+        }
+    }
+    .withoutAnimation {
+        .main-container,
+        .sidebar-container {
+            transition: none;
+        }
+    }
+}

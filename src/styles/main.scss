@@ -1,0 +1,14 @@
+.container {
+  padding: 0 25px;
+
+  .fenye {
+    float: right;
+    padding: 13px 0 13px 0;
+    width: 100%;
+
+    .el-pagination {
+      float: right;
+      text-align: right;
+    }
+  }
+}

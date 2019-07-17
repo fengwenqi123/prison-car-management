@@ -1,0 +1,168 @@
+.CommonTable {
+  height: 100%;
+  padding: 0 24px 59px 24px;
+
+  .table_main_add {
+    height: 720px;
+    width: 100%;
+    overflow: auto;
+  }
+
+  .table_main {
+    width: 100%;
+    border-top: 3px solid rgba(24, 144, 255, 1);
+    padding: 0 13px;
+
+    .table_search {
+      padding: 13px 0 23px 0;
+
+      span {
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .el-input__inner {
+        width: 272px;
+        height: 32px;
+        line-height: 32px;
+      }
+
+      .table_search_buttonLeft {
+        float: right;
+        // width: 50%;
+        display: inline-block;
+      }
+
+      .el-date-editor {
+        .el-input__inner {
+          width: 200px !important;
+        }
+      }
+
+      .el-date-editor.el-input,
+      .el-date-editor.el-input__inner {
+        width: 200px !important;
+      }
+    }
+
+    //表格
+    .table {
+      .el-table {
+        th {
+          height: 55px;
+          line-height: 55px;
+          text-align: left;
+        }
+
+        td {
+          height: 55px;
+          line-height: 55px;
+        }
+
+        .el-table__body-wrapper {
+          text-align: left;
+        }
+
+        .table_button {
+          font-size: 13px;
+          font-weight: bold;
+          width: 100px;
+        }
+
+        .table_button:nth-child(1) {
+          border-right: 1px solid rgba(233, 233, 233, 1)
+        }
+
+        .table_button:nth-child(2) {
+          margin-left: 0
+        }
+
+        .success {
+          color: rgba(82, 196, 26, 1);
+
+          span {
+            color: #606266
+          }
+        }
+
+        .error {
+          color: rgba(245, 34, 45, 1);
+
+          span {
+            color: #606266
+          }
+        }
+      }
+    }
+
+    .fenye {
+      float: right;
+      padding: 13px 0 13px 0;
+      width: 100%;
+
+      .el-pagination {
+        float: right;
+        text-align: right;
+      }
+
+      .fenye_left {
+        float: left;
+        line-height: 32px;
+
+        .el-checkbox {
+          margin: 0 14px;
+        }
+
+        .checkNum {
+          margin: 0 14px;
+          font-size: 12px;
+          font-weight: 400;
+          color: rgba(96, 98, 102, 1);
+        }
+      }
+    }
+
+    //表单
+    .table_form {
+      padding: 24px 0 23px 0;
+
+      .el-form-item {
+        margin-bottom: 24px;
+
+        .el-form-item__content {
+          .el-input {
+            width: 535px;
+            height: 37px;
+          }
+
+          .el-textarea {
+            width: 790px
+          }
+
+          .select {
+            width: 535px;
+            height: 36px;
+            line-height: 36px;
+          }
+
+          .el-checkbox-group {
+            display: inline-block;
+            margin-right: 55px;
+          }
+        }
+      }
+    }
+  }
+
+  .form_bottom {
+    position: absolute;
+    bottom: 20px;
+    background: #fff;
+    left: 24px;
+    right: 24px;
+    padding: 10px 0 10px 328px;
+  }
+
+}
+
+

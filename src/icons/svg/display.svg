@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="21px" height="19px" viewBox="0 0 21 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="湖州GIS-母版" transform="translate(-1665.000000, -81.000000)" fill="#666666" fill-rule="nonzero">
+            <g id="Group" transform="translate(0.300654, 0.287582)">
+                <g id="地图设置" transform="translate(1408.000000, 65.000000)">
+                    <g id="map" transform="translate(256.836601, 15.058824)">
+                        <path d="M13.1764706,3.76470588 L6.90196078,1.25490196 L0,3.76470588 L0,18.8235294 L6.90196078,16.3137255 L13.1764706,18.8235294 L20.0784314,16.3137255 L20.0784314,1.25490196 L13.1764706,3.76470588 Z M7.52941176,2.85745098 L12.5490196,4.86529412 L12.5490196,17.2209412 L7.52941176,15.2131373 L7.52941176,2.85745098 Z M1.25490196,4.64368627 L6.2745098,2.81839216 L6.2745098,15.2066275 L1.25490196,17.0318824 L1.25490196,4.64368627 Z M18.8235294,15.4347451 L13.8039216,17.2600784 L13.8039216,4.87184314 L18.8235294,3.04654902 L18.8235294,15.4347451 Z" id="Shape"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

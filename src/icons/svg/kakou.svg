@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="18px" viewBox="0 0 20 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>卡口摄像头</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-434.000000, -65.000000)" fill-rule="nonzero">
+            <g id="Group" transform="translate(37.000000, 58.000000)">
+                <g id="间距-&lt;h20-&gt;" transform="translate(11.000000, 0.000000)">
+                    <g id="卡口" transform="translate(378.000000, 0.000000)">
+                        <g id="卡口摄像头" transform="translate(6.000000, 4.000000)">
+                            <rect id="Rectangle-path" fill="#FFFFFF" opacity="0" x="0" y="0" width="24" height="24"></rect>
+                            <path d="M6.5625,15.0984375 L4.59375,15.0984375 L4.59375,12.6375 L2.625,12.2742188 L2.625,20.203125 L4.59375,19.565625 L4.59375,16.8304688 L7.78125,16.8304688 L9.46875,14.5523438 L7.21875,13.3664063 L6.5625,15.0984375 Z M16.78125,15.553125 L21.375,12.7265625 L7.125,3.796875 L5.4375,3.796875 L3.1875,7.16953125 L3.1875,8.35546875 L15.75,15.646875 L16.78125,15.553125 Z M15.09375,16.190625 L4.3125,9.44765625 L3.1875,10.6335937 L15.75,17.925 L16.875,17.925 L17.4375,17.3765625 L18,15.7359375 L16.3125,16.921875 C15.5601563,16.3734375 15.09375,16.190625 15.09375,16.190625 Z" id="Shape" fill="#01579B"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

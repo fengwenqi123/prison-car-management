@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="17px" height="17px" viewBox="0 0 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>signal</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="湖州GIS-母版" transform="translate(-1548.000000, -81.000000)" fill-rule="nonzero">
+            <g id="Group" transform="translate(0.300654, 0.287582)">
+                <g id="地图设置" transform="translate(1408.000000, 65.000000)">
+                    <g id="signal" transform="translate(136.366013, 12.549020)">
+                        <rect id="Rectangle-path" fill="#000000" opacity="0" x="0" y="0" width="22.5882353" height="22.5882353"></rect>
+                        <path d="M3.34640523,20.0784314 L6.13507625,20.0784314 L6.13507625,17.2897603 L3.34640523,17.2897603 L3.34640523,20.0784314 Z M7.99419026,20.0784314 L10.7828613,20.0784314 L10.7828613,13.5715323 L7.99419026,13.5715323 L7.99419026,20.0784314 Z M12.6419753,20.0784314 L15.4306463,20.0784314 L15.4306463,8.92374728 L12.6419753,8.92374728 L12.6419753,20.0784314 Z M17.2897603,20.0784314 L20.0784314,20.0784314 L20.0784314,3.34640523 L17.2897603,3.34640523 L17.2897603,20.0784314 Z" id="Shape" fill="#666666"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

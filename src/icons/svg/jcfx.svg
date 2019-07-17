@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50 (54983) - http://www.bohemiancoding.com/sketch -->
+    <title>决策分析</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="5.76596506e-05%" y1="0%" x2="100%" y2="104.335938%" id="linearGradient-1">
+            <stop stop-color="#FF9482" offset="0%"></stop>
+            <stop stop-color="#FF8C93" offset="10.4938616%"></stop>
+            <stop stop-color="#FE84A4" offset="20.9877232%"></stop>
+            <stop stop-color="#FD7BB4" offset="31.4815848%"></stop>
+            <stop stop-color="#FB72C5" offset="41.9754464%"></stop>
+            <stop stop-color="#F869D5" offset="52.469308%"></stop>
+            <stop stop-color="#E46DDD" offset="61.9754464%"></stop>
+            <stop stop-color="#CF70E6" offset="71.4815848%"></stop>
+            <stop stop-color="#B873EE" offset="80.9877232%"></stop>
+            <stop stop-color="#9D75F7" offset="90.4938616%"></stop>
+            <stop stop-color="#7D77FF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="首页" transform="translate(-32.000000, -430.000000)" fill-rule="nonzero">
+            <g id="母版">
+                <g id="Group-19">
+                    <g transform="translate(31.032292, 119.000000)">
+                        <g id="决策分析" transform="translate(0.000000, 311.000000)">
+                            <rect id="Rectangle-path" fill="#000000" opacity="0" x="0" y="3" width="20.0208333" height="20"></rect>
+                            <path d="M9.1295,1.54 C4.77496875,1.54 1.25130208,5.06 1.25130208,9.41 C1.25130208,13.76 4.77496875,17.28 9.1295,17.28 C13.4840312,17.28 17.0076979,13.76 17.0076979,9.41 L9.1295,9.41 L9.1295,1.54 Z" id="Shape" fill="url(#linearGradient-1)"></path>
+                            <path d="M10.7411771,0 L10.7411771,7.87 L18.619375,7.87 C18.619375,3.52 15.0957083,0 10.7411771,0 Z" id="Shape" fill="url(#linearGradient-1)"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
