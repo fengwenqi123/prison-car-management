@@ -42,7 +42,7 @@ export default {
   .app-breadcrumb.el-breadcrumb {
     display: inline-block;
     font-size: 14px;
-    line-height: 59px;
+    line-height: 40px;
     margin-left: 10px;
     .no-redirect {
       color:rgba(0,0,0,0.65);

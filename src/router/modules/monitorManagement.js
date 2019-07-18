@@ -6,7 +6,7 @@ const monitor = {
   path: '/monitor',
   component: Layout,
   redirect: '/monitor/monitorManagement',
-  name: 'monitorManagement',
+  name: 'monitor',
   alwaysShow: true,
   meta: {title: '监控管理', icon: 'xtgl1', roles: ['sys']},
   children: [{

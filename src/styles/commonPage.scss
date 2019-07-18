@@ -1,20 +1,38 @@
 .CommonTable {
   height: 100%;
-  padding: 0 24px 59px 24px;
+  padding: 0 24px;
+
+  .title-table {
+    height: 46px;
+  }
 
   .table_main_add {
-    height: 720px;
+    height: 500px;
     width: 100%;
     overflow: auto;
   }
 
   .table_main {
     width: 100%;
+    height: calc(100% - 62px);
     border-top: 3px solid rgba(24, 144, 255, 1);
     padding: 0 13px;
 
+    .el-card__body {
+      height: 100%;
+      padding: 10px 0;
+    }
+
+    .table_con {
+      position: relative;
+      height: 100%;
+    }
+
     .table_search {
-      padding: 13px 0 23px 0;
+      padding: 14px 14px 0 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
 
       span {
         font-size: 14px;
@@ -22,15 +40,11 @@
       }
 
       .el-input__inner {
-        width: 272px;
         height: 32px;
         line-height: 32px;
       }
 
       .table_search_buttonLeft {
-        float: right;
-        // width: 50%;
-        display: inline-block;
       }
 
       .el-date-editor {
@@ -47,6 +61,8 @@
 
     //表格
     .table {
+      height: calc(100% - 118px);
+
       .el-table {
         th {
           height: 55px;
@@ -96,18 +112,20 @@
     }
 
     .fenye {
-      float: right;
-      padding: 13px 0 13px 0;
+      position: absolute;
+      bottom: 0px;
       width: 100%;
+      z-index: 99;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
 
       .el-pagination {
-        float: right;
         text-align: right;
       }
 
       .fenye_left {
-        float: left;
-        line-height: 32px;
 
         .el-checkbox {
           margin: 0 14px;
@@ -136,7 +154,7 @@
           }
 
           .el-textarea {
-            width: 790px
+            width: 600px
           }
 
           .select {
@@ -161,6 +179,12 @@
     left: 24px;
     right: 24px;
     padding: 10px 0 10px 328px;
+  }
+
+  .dialog-footer {
+    padding: 14px 0;
+    display: flex;
+    justify-content: center;
   }
 
 }

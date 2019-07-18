@@ -6,7 +6,7 @@ const car = {
   path: '/car',
   component: Layout,
   redirect: '/car/carInformation',
-  name: 'carInformation',
+  name: 'car',
   alwaysShow: true,
   meta: {title: '车辆登记管理', icon: 'xtgl1', roles: ['sys']},
   children: [{

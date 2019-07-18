@@ -4,28 +4,35 @@
       <title-header></title-header>
     </div>
     <el-card class="table_main">
-      <div class="table_search">
-        <span>关键字：</span>
-        <el-input
-          placeholder="请输入关键字"
-          v-model="keyword"
-          clearable>
-        </el-input>
-        <el-button type="primary" icon="el-icon-search" size="small" @click="query" class="blueButton">查询</el-button>
-        <div class="table_search_buttonLeft">
-          <el-button type="primary" icon="el-icon-circle-plus" size="small" @click="add" class="blueButton">添加</el-button>
-          <!-- <el-button type="warning" icon="el-icon-edit-outline" size="small" @click="modify">修改</el-button> -->
+      <div class="table_con">
+        <div class="table_search">
+          <el-form :inline="true" class="form-inline">
+            <el-form-item label="关键字">
+              <el-input
+                placeholder="请输入关键字"
+                v-model="keyword"
+                clearable>
+              </el-input>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="primary" icon="el-icon-search" size="small" @click="query" class="blueButton">查询
+              </el-button>
+            </el-form-item>
+          </el-form>
+          <div class="table_search_buttonLeft">
+            <el-button type="primary" icon="el-icon-circle-plus" size="small" @click="add" class="blueButton">添加
+            </el-button>
+          </div>
         </div>
-      </div>
-      <div class="table">
+        <div class="table">
           <el-table
-            height="605"
+            height="100%"
             stripe
             ref="multipleTable"
             :data="tableData"
             @select-all="handleSelectionAll"
             @selection-change="handleSelectionChange"
-            >
+          >
             <el-table-column
               type="selection"
               width="55">
@@ -57,7 +64,7 @@
               label="状态"
               width="120">
               <template slot-scope="scope">
-                <li slot="scope"  v-bind:class="{ success: scope.row.status =='1',error:scope.row.status =='2' }"><span>
+                <li slot="scope" v-bind:class="{ success: scope.row.status =='1',error:scope.row.status =='2' }"><span>
                    {{ scope.row.status
                   ===1 ?'启用'
                   :scope.row.status
@@ -79,7 +86,7 @@
             <el-table-column
               prop="modifyTimeString"
               label="更新时间"
-              >
+            >
             </el-table-column>
             <el-table-column
               label="操作"
@@ -87,32 +94,43 @@
               width="220">
               <template slot-scope="scope">
                 <el-button-group>
-                <el-button @click="handleClickInfo(scope.row)" type="text" size="small" icon="el-icon-search" class="table_button">查看</el-button>
-                <el-button @click="handleClickModify(scope.row)"  type="text" size="small" icon="el-icon-edit-outline" class="table_button">编辑</el-button>
+                  <el-button @click="handleClickInfo(scope.row)" type="text" size="small" icon="el-icon-search"
+                             class="table_button">查看
+                  </el-button>
+                  <el-button @click="handleClickModify(scope.row)" type="text" size="small" icon="el-icon-edit-outline"
+                             class="table_button">编辑
+                  </el-button>
                 </el-button-group>
               </template>
             </el-table-column>
           </el-table>
-    </div>
-    <div class="fenye">
-        <el-pagination
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-          :current-page.sync="page.pageNum"
-          :page-sizes="[10, 20, 30, 40]"
-          :page-size="100"
-          layout="total, sizes, prev, pager, next, jumper"
-          :total="page.total">
-        </el-pagination>
-        <div class="fenye_left">
-          <el-checkbox v-model="checked" @change="toggleSelection(tableData)">全选</el-checkbox>
-          <el-button  icon="el-icon-delete" size="small" @click="del" class="whiteButton">批量删除</el-button>
-          <el-button  icon="el-icon-circle-check-outline" size="small" @click="Enable" class="whiteButton">批量启用</el-button>
-          <el-button  icon="el-icon-circle-close-outline" size="small" @click="Disable" class="whiteButton">批量禁用</el-button>
-          <span class="checkNum">已选择{{checkNum}}项</span>
+        </div>
+        <div class="fenye">
+          <div class="fenye_left">
+            <el-checkbox v-model="checked" @change="toggleSelection(tableData)">全选</el-checkbox>
+            <el-button icon="el-icon-delete" size="small" @click="del" class="whiteButton">批量删除</el-button>
+            <el-button icon="el-icon-circle-check-outline" size="small" @click="Enable" class="whiteButton">批量启用
+            </el-button>
+            <el-button icon="el-icon-circle-close-outline" size="small" @click="Disable" class="whiteButton">批量禁用
+            </el-button>
+            <span class="checkNum">已选择{{checkNum}}项</span>
+          </div>
+          <el-pagination
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            :current-page.sync="page.pageNum"
+            :page-sizes="[10, 20, 30, 40]"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="page.total">
+          </el-pagination>
         </div>
       </div>
     </el-card>
+    <div class="add" v-if="addDialog">
+      <el-dialog :title="title" :visible.sync="addDialog" :before-close="handleClose">
+        <addChildren :row="row" :readonly="readonly" @cancel="cancel" @submit="submit"></addChildren>
+      </el-dialog>
+    </div>
   </div>
 </template>
 
@@ -120,13 +138,15 @@
   /* eslint-disable object-curly-spacing */
 
   import titleHeader from '@/components/title/index'
+  import addChildren from './addChildren'
   import {lists, delt, enable, disable} from '@/api/AuthorizeManagement'
-  // import {getToken} from '@/utils/auth' // 验权
 
   export default {
     data() {
       return {
+        title: '',
         border: true,
+        readonly: false,
         order: 'layer',
         page: {
           pageSize: 10,
@@ -140,31 +160,31 @@
         keyword: '',
         show: true,
         tableData: [],
-        currentPage: 4,
-        mul_0: '',
-        mul: '',
-        disabled: false
+        selectData: '',
+        addDialog: false,
+        row: null
       }
     },
     components: {
-      titleHeader
+      titleHeader,
+      addChildren
     },
     created() {
       this.list()
     },
     methods: {
       handleSelectionChange(val) {
-        this.mul_0 = val
-        this.checkNum = this.mul_0.length
-        if (this.mul_0.length === this.tableData.length) {
+        this.selectData = val
+        this.checkNum = this.selectData.length
+        if (this.selectData.length === this.tableData.length) {
           this.checked = true
         } else {
           this.checked = false
         }
       },
       handleSelectionAll(val) {
-        this.mul_0 = val
-        console.log(this.mul_0)
+        this.selectData = val
+        console.log(this.selectData)
       },
       toggleSelection(rows) {
         console.log(this.checked)
@@ -178,13 +198,13 @@
           })
         }
       },
+      // 每页几条
       handleSizeChange(val) {
-        console.log(`每页 ${val} 条`)
         this.page.pageSize = val
         this.list()
       },
+      // 当前页
       handleCurrentChange(val) {
-        console.log(`当前页: ${val}`)
         this.page.pageNum = val
         this.list()
       },
@@ -200,34 +220,22 @@
         this.list()
       },
       add() {
-        this.$router.push({name: 'AddAuthorize', params: {title: '新增权限', data: null, show: true, disabled: false}})
+        this.title = '新增'
+        this.addDialog = true
       },
       handleClickInfo(row) {
-        this.$router.push({name: 'AddAuthorize', params: {title: '权限详情', data: row, show: false, disabled: true}})
+        this.title = '查看'
+        this.row = row
+        this.readonly = true
+        this.addDialog = true
       },
       handleClickModify(row) {
-        this.$router.push({name: 'AddAuthorize', params: {title: '编辑权限', data: row, show: true, disabled: false}})
-      },
-      modify() {
-        if (this.mul_0.length > 1) {
-          this.$message({
-            message: '只能选择一个'
-          })
-          return
-        }
-        if (this.mul_0.length === 0) {
-          this.$message({
-            message: '请先选择'
-          })
-          return
-        } else {
-          this.mul = this.mul_0[0]
-          this.show = false
-          this.disabled = true
-        }
+        this.title = '修改'
+        this.row = row
+        this.addDialog = true
       },
       del() {
-        if (this.mul_0.length === 0) {
+        if (this.selectData.length === 0) {
           this.$message({
             message: '请先选择'
           })
@@ -239,7 +247,7 @@
           type: 'warning'
         }).then(() => {
           var num = []
-          this.mul_0.forEach((item, index) => {
+          this.selectData.forEach((item, index) => {
             num.push(item.id)
           })
           delt(num).then(response => {
@@ -257,7 +265,7 @@
         })
       },
       Enable() {
-        if (this.mul_0.length === 0) {
+        if (this.selectData.length === 0) {
           this.$message({
             message: '请先选择'
           })
@@ -269,7 +277,7 @@
           type: 'warning'
         }).then(() => {
           var num = []
-          this.mul_0.forEach((item, index) => {
+          this.selectData.forEach((item, index) => {
             num.push(item.id)
           })
           enable(num).then(response => {
@@ -287,7 +295,7 @@
         })
       },
       Disable() {
-        if (this.mul_0.length === 0) {
+        if (this.selectData.length === 0) {
           this.$message({
             message: '请先选择'
           })
@@ -299,7 +307,7 @@
           type: 'warning'
         }).then(() => {
           var num = []
-          this.mul_0.forEach((item, index) => {
+          this.selectData.forEach((item, index) => {
             num.push(item.id)
           })
           disable(num).then(response => {
@@ -315,6 +323,17 @@
             message: '已取消操作'
           })
         })
+      },
+      cancel() {
+        this.handleClose()
+      },
+      submit() {
+        this.handleClose()
+        this.list()
+      },
+      handleClose() {
+        this.addDialog = false
+        this.row = null
       }
     }
   }
