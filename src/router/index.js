@@ -8,6 +8,7 @@ import Layout from '../views/layout/Layout'
 import system from './modules/system'
 import car from './modules/carManagement'
 import monitor from './modules/monitorManagement'
+import map from './modules/mapManagement'
 
 export const constantRouterMap = [
   {
@@ -48,7 +49,8 @@ export default new Router({
 })
 export const asyncRouterMap = [
   car,
-  system,
+  map,
   monitor,
+  system,
   {path: '*', redirect: '/404', hidden: true}
 ]

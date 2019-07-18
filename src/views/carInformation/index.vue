@@ -144,9 +144,7 @@
   export default {
     data() {
       return {
-        title: '',
         border: true,
-        readonly: false,
         order: 'layer',
         page: {
           pageSize: 10,
@@ -162,7 +160,9 @@
         tableData: [],
         selectData: '',
         addDialog: false,
-        row: null
+        row: null,
+        readonly: false,
+        title: ''
       }
     },
     components: {

@@ -18,7 +18,7 @@
       </div>
       <div class="table">
           <el-table
-            height="605"
+            height="100%"
             stripe
             ref="multipleTable"
             :data="tableData"

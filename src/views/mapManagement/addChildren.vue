@@ -52,16 +52,15 @@
               </el-input>
             </el-form-item>
             <el-form-item label="状态:" prop="status">
-              <el-radio :readonly="readonly" v-model="form.status" label='1'>启用</el-radio>
-              <el-radio :readonly="readonly" v-model="form.status" label='2'>禁用</el-radio>
+              <el-radio :readonly="readonly" v-model="form.status.toString()" label='1'>启用</el-radio>
+              <el-radio :readonly="readonly" v-model="form.status.toString()" label='2'>禁用</el-radio>
             </el-form-item>
           </el-form>
         </div>
       </el-scrollbar>
     </div>
     <div slot="footer" class="dialog-footer">
-      <el-button v-if="!readonly" icon="el-icon-document" size="small" @click="submitForm('addForm')"
-                 class="blueButton">保存
+      <el-button icon="el-icon-document" size="small" @click="submitForm('addForm')" class="blueButton">保存
       </el-button>
       <el-button icon="el-icon-refresh-left" size="small" @click="cancel" class="whiteButton">返回</el-button>
     </div>
@@ -109,7 +108,6 @@
       init() {
         if (this.row) {
           this.form = JSON.parse(JSON.stringify(this.row))
-          this.form.status = this.form.status.toString()
         }
       },
       // 数据操作
@@ -160,5 +158,27 @@
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
+  .container {
+    margin-top: 20px;
+
+    .select {
+      background-color: #FFF;
+      background-image: none;
+      border-radius: 4px;
+      border: 1px solid #DCDFE6;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      color: #606266;
+      display: inline-block;
+      font-size: inherit;
+      height: 32px;
+      line-height: 32px;
+      outline: 0;
+      padding: 0 15px;
+      -webkit-transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
+      transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
+      width: 232px;
+    }
+  }
 
 </style>
