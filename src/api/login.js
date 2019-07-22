@@ -9,7 +9,7 @@ export function login(loginName, password, loginType, loginSource) {
     loginSource
   })
   return request({
-    url: '/login/user/login',
+    url: '/login/login',
     method: 'post',
     data
   })
@@ -20,7 +20,7 @@ export function ddlogin(loginType, loginSource, ip, hostName, ticket, service) {
     loginType, loginSource, ip, hostName, ticket, service
   })
   return request({
-    url: '/login/user/login',
+    url: '/login/login',
     method: 'post',
     data
   })
@@ -41,7 +41,7 @@ export function getInfo(token) {
     accessToken: token
   })
   return request({
-    url: '/login/user/online',
+    url: '/login/online',
     method: 'POST',
     data
   })
@@ -49,7 +49,7 @@ export function getInfo(token) {
 
 export function logout() {
   return request({
-    url: '/login/user/logout',
+    url: '/login/logout',
     method: 'post'
   })
 }
