@@ -21,7 +21,6 @@ const system = {
     component: () => import('@/views/AuthorizeManagement/addChildren'),
     meta: {title: '权限管理'},
     hidden: true
-
   },
   {
     path: 'RoleManagement',
