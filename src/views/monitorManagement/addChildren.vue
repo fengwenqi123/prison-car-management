@@ -1,210 +1,235 @@
 <template>
-  <div class="CommonTable">
-    <div class="title-table">
-      <title-header></title-header>
-    </div>
+  <div class="container">
     <div class="table_main_add">
       <el-scrollbar class="scrolls">
-        <el-card class="table_main">
-          <div class="table_form">
-            <el-form :model="form" status-icon :rules="rules" ref="addForm" :label-width="labelWidth">
-              <el-form-item label="上级权限:" prop="supAuth">
-                <el-input v-model="parent" v-if="this.form.id" disabled></el-input>
-                <select name="supLayer" v-model="form.supLayer" class="select" v-if="!this.form.id">
-                  <option value="">请选择</option>
-                  <option v-for="item in authArr" :value="item.layer" :key="item.id">
-                    <span v-if="item.layer && item.layer.length==3" v-text="item.name"></span>
-                    <span v-if="item.layer && item.layer.length==6" v-text="'　┝ '+item.name"></span>
-                    <span v-if="item.layer && item.layer.length==9" v-text="'　　┝ '+item.name"></span>
-                    <span v-if="item.layer && item.layer.length==12" v-text="'　　　　┝ '+item.name"></span>
-                    <span v-if="item.layer && item.layer.length==15" v-text="'　　　　　　┝ '+item.name"></span>
-                  </option>
-                </select>
-              </el-form-item>
-              <el-form-item label="权限名称:" prop="name">
-                <el-input
-                  placeholder="请输入权限名称"
-                  v-model="form.name"
-                  :readonly="disabled"
-                  clearable>
-                </el-input>
-              </el-form-item>
-              <el-form-item label="权限值:" prop="actionValue">
-                <el-input
-                  :readonly="disabled"
-                  placeholder="请输入权限值"
-                  v-model="form.actionValue"
-                  clearable>
-                </el-input>
-              </el-form-item>
-              <el-form-item label="排序:" prop="sort">
-                <el-input
-                  :readonly="disabled"
-                  placeholder="请输入排序"
-                  v-model="form.sort"
-                  clearable>
-                </el-input>
-              </el-form-item>
-              <el-form-item label="备注:" prop="description">
-                <el-input
-                  :readonly="disabled"
-                  type="textarea"
-                  :rows="6"
-                  placeholder="请输入备注"
-                  v-model="form.description">
-                </el-input>
-              </el-form-item>
-              <el-form-item label="状态:" prop="status">
-                <el-radio v-model="form.status" label='1' :disabled="disabled">启用</el-radio>
-                <el-radio v-model="form.status" label='2' :disabled="disabled">禁用</el-radio>
-              </el-form-item>
-            </el-form>
-          </div>
-        </el-card>
+        <div class="table_form">
+          <el-form :model="form" status-icon :rules="rules" ref="addForm" :label-width="labelWidth">
+            <!-- <el-select v-model="form.mapId" placeholder="请选择">
+              <el-option v-for="item in options" :key="item.value" :label="item.name" :value="item.id">
+              </el-option>
+            </el-select> -->
+            <el-form-item label="摄像头编号:" prop="code">
+              <el-input :readonly="readonly" placeholder="请输入车牌号码" v-model="form.code" clearable>
+              </el-input>
+            </el-form-item>
+            <el-form-item label="摄像头名称:" prop="deviceName">
+              <el-input :readonly="readonly" placeholder="请输入车牌号码" v-model="form.deviceName" clearable>
+              </el-input>
+            </el-form-item>
+            <el-form-item label="安装位置:" prop="address">
+              <el-input :readonly="readonly" placeholder="请输入车牌号码" v-model="form.address" clearable>
+              </el-input>
+            </el-form-item>
+            <el-form-item label="X轴坐标:" prop="x">
+              <el-input :readonly="readonly" placeholder="请输入车牌号码" v-model="form.x" clearable>
+              </el-input>
+            </el-form-item>
+            <el-form-item label="Y轴坐标:" prop="y">
+              <el-input :readonly="readonly" placeholder="请输入车牌号码" v-model="form.y" clearable>
+              </el-input>
+            </el-form-item>
+            <el-form-item label="经度:" prop="longitude">
+              <el-input :readonly="readonly" placeholder="请输入车牌号码" v-model="form.longitude" clearable>
+              </el-input>
+            </el-form-item>
+            <el-form-item label="纬度:" prop="latitude">
+              <el-input :readonly="readonly" placeholder="请输入车牌号码" v-model="form.latitude" clearable>
+              </el-input>
+            </el-form-item>
+            <el-form-item label="设备IP地址:" prop="ip">
+              <el-input :readonly="readonly" placeholder="请输入车牌号码" v-model="form.ip" clearable>
+              </el-input>
+            </el-form-item>
+            <el-form-item label="端口号:" prop="port">
+              <el-input :readonly="readonly" placeholder="请输入车牌号码" v-model="form.port" clearable>
+              </el-input>
+            </el-form-item>
+            <el-form-item label="用户名:" prop="account">
+              <el-input :readonly="readonly" placeholder="请输入车牌号码" v-model="form.account" clearable>
+              </el-input>
+            </el-form-item>
+            <el-form-item label="密码:" prop="password">
+              <el-input :readonly="readonly" placeholder="请输入车牌号码" v-model="form.password" clearable>
+              </el-input>
+            </el-form-item>
+            <el-form-item label="通道号:" prop="channel">
+              <el-input :readonly="readonly" placeholder="请输入车牌号码" v-model="form.channel" clearable>
+              </el-input>
+            </el-form-item>
+            <el-form-item label="地图id:" prop="mapId">
+              <el-input :readonly="readonly" placeholder="请输入车牌号码" v-model="form.mapId" clearable>
+              </el-input>
+            </el-form-item>
+            <el-form-item label="地图名:" prop="mapName">
+              <el-input :readonly="readonly" placeholder="请输入车牌号码" v-model="form.mapName" clearable>
+              </el-input>
+            </el-form-item>
+            <el-form-item label="区域:" prop="irradiationArea">
+              <el-input :readonly="readonly" placeholder="请输入车牌号码" v-model="form.irradiationArea" clearable>
+              </el-input>
+            </el-form-item>
+            <el-form-item label="区域:" prop="vcrAccount">
+              <el-input :readonly="readonly" placeholder="请输入车牌号码" v-model="form.vcrAccount" clearable>
+              </el-input>
+            </el-form-item>
+            <el-form-item label="区域:" prop="vcrChannel">
+              <el-input :readonly="readonly" placeholder="请输入车牌号码" v-model="form.vcrChannel" clearable>
+              </el-input>
+            </el-form-item>
+            <el-form-item label="区域:" prop="vcrIp">
+              <el-input :readonly="readonly" placeholder="请输入车牌号码" v-model="form.vcrIp" clearable>
+              </el-input>
+            </el-form-item>
+            <el-form-item label="区域:" prop="vcrPassword">
+              <el-input :readonly="readonly" placeholder="请输入车牌号码" v-model="form.vcrPassword" clearable>
+              </el-input>
+            </el-form-item>
+            <el-form-item label="区域:" prop="vcrPort">
+              <el-input :readonly="readonly" placeholder="请输入车牌号码" v-model="form.vcrPort" clearable>
+              </el-input>
+            </el-form-item>
+            <!-- <el-form-item label="录像机设备IP地址:" prop="">
+              <el-input :readonly="readonly" placeholder="请输入车牌号码" v-model="form." clearable>
+              </el-input>
+            </el-form-item>
+            <el-form-item label="录像机端口号:" prop="">
+              <el-input :readonly="readonly" placeholder="请输入车牌号码" v-model="form." clearable>
+              </el-input>
+            </el-form-item>
+            <el-form-item label="录像机用户名:" prop="">
+              <el-input :readonly="readonly" placeholder="请输入车牌号码" v-model="form." clearable>
+              </el-input>
+            </el-form-item>
+            <el-form-item label="录像机密码:" prop="">
+              <el-input :readonly="readonly" placeholder="请输入车牌号码" v-model="form." clearable>
+              </el-input>.
+            </el-form-item>
+            <el-form-item label="录像机通道号:" prop="">
+              <el-input :readonly="readonly" placeholder="请输入车牌号码" v-model="form." clearable>
+              </el-input>
+            </el-form-item> -->
+          </el-form>
+        </div>
       </el-scrollbar>
     </div>
-    <div class="form_bottom">
-      <el-button icon="el-icon-document" size="small" @click="submitForm('addForm')" class="blueButton"
-                 v-if="showButton">保存
+    <div slot="footer" class="dialog-footer">
+      <el-button v-if="!readonly" icon="el-icon-document" size="small" @click="submitForm('addForm')" class="blueButton">保存
       </el-button>
-      <el-button icon="el-icon-refresh" size="small" @click="resetForm('addForm')" class="whiteButton"
-                 v-if="showButton">重置
-      </el-button>
-      <el-button icon="el-icon-refresh-left" size="small" @click="goBack" class="whiteButton">返回</el-button>
+      <el-button icon="el-icon-refresh-left" size="small" @click="aaa" class="whiteButton">返回</el-button>
     </div>
   </div>
 </template>
 
 <script>
-  /* eslint-disable object-curly-spacing */
+/* eslint-disable object-curly-spacing */
 
-  import titleHeader from '@/components/title/index'
-  import {findAuthorize, add} from '@/api/AuthorizeManagement'
+import { lists, add } from '@/api/monitor'
 
-  export default {
-    data() {
-      return {
-        // 数据
-        loading: true,
-        // 表单属性
-        labelWidth: '300px',
-        selected: null,
-        // 数据
-        parent: null,
-        disabled: false,
-        page_title: '新增权限',
-        authArr: [],
-        sourceData: null,
-        showButton: true,
-        // 表单内容
-        form: {
-          id: null,
-          supLayer: null,
-          name: null,
-          actionValue: null,
-          sort: null,
-          description: null,
-          status: '1'
-        },
-        // 表单验证
-        rules: {
-          name: [{required: true, message: '请输入权限名称', trigger: 'blur'}],
-          actionValue: [{required: true, message: '请输入权限值', trigger: 'blur'}]
-        }
-      }
-    },
-    components: {
-      titleHeader
-    },
-    created() {
-      this.findAuth()
-      this.getQuery()
-    },
-    beforeRouteEnter(to, from, next) {
-      next(vm => {
-        // console.log(vm)
-        // vm的赋值是在mounted之后的，所以mounted勾子里面获取不到vm.$set()设置的值
-        vm.getQuery(to.params)
-      })
-    },
-    methods: {
-      // 获取路由传来的数据
-      getQuery(data) {
-        // console.log(data)// 无论路由有没有传值，params的初始值都是{},但是在组件加载时vm并没有渲染，所以开始data是underfined
-        if (data) {
-          if (Object.keys(data).length > 0) { // 没有刷新路由的情况
-            this.sourceData = this.$route.params // 路由传过来的数据
-            if (this.sourceData.data) { // 编辑或详情，this.sourceData.data此时是有数据的
-              this.renderData(this.sourceData)
-              sessionStorage.setItem('Authorize', JSON.stringify(this.$route.params))
-            }
-          } else {
-            this.sourceData = JSON.parse(sessionStorage.getItem('Authorize'))
-            this.renderData(this.sourceData)
-          }
-        }
+export default {
+  props: ['row', 'readonly'],
+  data() {
+    return {
+      // 表单属性
+      labelWidth: '100px',
+      // 数据
+      parent: null,
+      disabled: false,
+      authArr: [],
+      // 表单内容
+      form: {
+        id: null,
+        code: null,
+        deviceName: null,
+        address: null,
+        longitude: null,
+        latitude: null,
+        x: null,
+        y: null,
+        ip: null,
+        port: null,
+        account: null,
+        password: null,
+        channel: null,
+        mapId: null,
+        mapName: null,
+        irradiationArea: null,
+        vcrIp: '2',
+        vcrPort: '1',
+        vcrAccount: '1',
+        vcrPassword: '1',
+        vcrChannel: '1'
+        // status: '1'
       },
-      renderData(d) {
-        this.page_title = d.title
-        this.disabled = d.disabled
-        this.showButton = d.show
-        if (d.data) {
-          this.form = d.data
-          console.log(this.form)
-          this.form.status = d.data.status.toString()
-        }
-      },
-      // 数据操作
-      findAuth() {
-        findAuthorize().then(response => {
-          this.authArr = response.data.dataList
-          if (this.form.id) {
-            if (this.form.layer.length < 4) {
-              this.parent = this.form.name
-              console.log(this.parent)
-            } else {
-              var leng = this.form.layer.substr(0, this.form.layer.length - 3)
-              var list = response.data.dataList
-              list.forEach((item, index) => {
-                if (leng === item.layer) {
-                  this.parent_layer = item.layer
-                  this.parent = item.name
-                }
-              })
-            }
-          }
-        })
-      },
-      // 表单操作
-      submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            add(this.form).then(response => {
-              if (response.code === 200) {
-                this.$message({
-                  message: response.msg,
-                  type: 'success'
-                })
-                setTimeout(() => {
-                  this.$router.push({name: 'AuthorizeManagement'})
-                }, 500)
-              }
-            })
-          } else {
-            console.log('error submit!!')
-            return false
-          }
-        })
-      },
-      resetForm(formName) {
-        this.form = {}
-      },
-      goBack() {
-        this.$router.push({name: 'AuthorizeManagement'})
+      // 表单验证
+      rules: {
+        name: [{ required: true, message: '请输入权限名称', trigger: 'blur' }],
+        actionValue: [
+          { required: true, message: '请输入权限值', trigger: 'blur' }
+        ],
+        sort: [{ required: true, message: '请输入排序', trigger: 'blur' }]
       }
     }
-
+  },
+  created() {
+    this.init()
+    // this.findAuth()
+    this.aaa()
+  },
+  methods: {
+    aaa() {
+      console.log(this.form)
+    },
+    init() {
+      if (this.row) {
+        this.form = JSON.parse(JSON.stringify(this.row))
+        console.log(this.form)
+        // this.form.status = this.form.status.toString()
+      }
+    },
+    // 数据操作
+    // findAuth() {
+    //   findAuthorize().then(response => {
+    //     this.authArr = response.data.dataList
+    //     if (this.form.id) {
+    //       if (this.form.layer.length < 4) {
+    //         this.parent = this.form.name
+    //       } else {
+    //         var leng = this.form.layer.substr(0, this.form.layer.length - 3)
+    //         var list = response.data.dataList
+    //         list.forEach((item, index) => {
+    //           if (leng === item.layer) {
+    //             this.parent = item.name
+    //           }
+    //         })
+    //       }
+    //     }
+    //   })
+    // },
+    // 表单操作
+    submitForm(formName) {
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          add(this.form).then(response => {
+            this.$message({
+              message: response.msg,
+              type: 'success'
+            })
+            this.submit()
+          })
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
+    },
+    submit() {
+      this.$emit('submit')
+    },
+    cancel() {
+      this.$emit('cancel')
+    }
   }
+}
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
