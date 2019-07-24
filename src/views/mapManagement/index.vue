@@ -14,6 +14,8 @@
             <el-form-item>
               <el-button type="primary" icon="el-icon-search" size="small" @click="query" class="blueButton">查询
               </el-button>
+              <el-button plain type='info' icon="el-icon-refresh" size="small" @click="rest" class="blueButton">重置
+              </el-button>
             </el-form-item>
           </el-form>
           <div class="table_search_buttonLeft">
@@ -43,7 +45,11 @@
             </el-table-column>
             <el-table-column prop="description" label="备注">
             </el-table-column>
-            <el-table-column prop="status" label="状态">
+            <el-table-column label="状态" prop='status'>
+              <template slot-scope="scope">
+                <el-tag size="medium" v-bind:class="{ active: scope.row.status === 1}">{{ scope.row.status === 1 ? '启用' : '禁用' }}
+                </el-tag>
+              </template>
             </el-table-column>
             <el-table-column prop="modifyTimeString" label="更新时间" width="100">
             </el-table-column>
@@ -87,7 +93,7 @@
 
 import titleHeader from '@/components/title/index'
 import addChildren from './addChildren'
-import { lists } from '@/api/map'
+import { lists, delt, enable, disable } from '@/api/map'
 
 export default {
   data() {
@@ -161,7 +167,11 @@ export default {
       this.page.pageNum = 1
       this.list()
     },
-
+    //  重置
+    rest() {
+      this.keyword = ''
+      this.list()
+    },
     list() {
       lists(
         this.page.pageNum,
@@ -305,4 +315,8 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
+.active {
+  background: #67c23a;
+  color: #fff;
+}
 </style>

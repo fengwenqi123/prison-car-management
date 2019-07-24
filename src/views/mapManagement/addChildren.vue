@@ -13,24 +13,26 @@
               </el-input>
             </el-form-item>
             <el-form-item label="部门ID:">
-              <!-- <el-input :readonly="readonly" placeholder="请输入身份证号" v-model="form.idCard" clearable> -->
-              <!-- </el-input> -->
               <el-select v-model="form.departmentId" placeholder="请选择">
-                <el-option v-for="item in options" :key="item.value" :label="item.name" :value="item.id">
+                <el-option v-for="item in options" :key="item.value" :label="item.name" :value="item.id" :disabled="readonly">
                 </el-option>
               </el-select>
             </el-form-item>
             <el-form-item label="备注:" prop="description">
               <el-input type="textarea" :readonly="readonly" placeholder="请填写事由" v-model="form.description" clearable></el-input>
             </el-form-item>
-            <!-- <el-form-item label="状态:" prop="cause">
-              <el-input type="textarea" :readonly="readonly" placeholder="请填写事由" v-model="form.cause" clearable></el-input>
-            </el-form-item> -->
+            <el-form-item label="状态:" prop="status">
+              <el-radio :readonly="readonly" v-model="form.status" label='1' :disabled="readonly">启用</el-radio>
+              <el-radio :readonly="readonly" v-model="form.status" label='2' :disabled="readonly">禁用</el-radio>
+            </el-form-item>
 
             <el-form-item label="上传图片:">
-              <el-upload action=" http://192.168.1.207:85/track/storage/" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-remove="handleRemove">
+              <el-upload action=" http://192.168.1.207:85/track/storage/" :disabled="readonly" :headers="headers" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-remove="handleRemove" :on-success="success">
                 <i class="el-icon-plus"></i>
               </el-upload>
+              <el-dialog :visible.sync="dialogVisible">
+                <img width="100%" :src="dialogImageUrl" alt="">
+              </el-dialog>
             </el-form-item>
           </el-form>
         </div>
@@ -48,12 +50,15 @@
 /* eslint-disable object-curly-spacing */
 import { add } from '@/api/map'
 import { lists } from '@/api/department'
+import { TokenKey } from '@/utils/auth'
 export default {
   props: ['row', 'readonly'],
   data() {
     return {
+      dialogImageUrl: '',
+      dialogVisible: false,
       // token
-      token: window.localStorage.getItem('token'),
+      token: new TokenKey().getToken(),
       // 表单属性
       labelWidth: '100px',
       // 数据
@@ -88,6 +93,13 @@ export default {
       options: []
     }
   },
+  computed: {
+    headers() {
+      return {
+        accessToken: this.token
+      }
+    }
+  },
   created() {
     this.init()
     // this.findAuth()
@@ -95,6 +107,22 @@ export default {
   },
   methods: {
     // 图片操作
+    success(response, file, fileList) {
+      // console.log(response)
+      // console.log(file)
+      // console.log(fileList)
+      // this.form.image = 'http://192.168.1.207:85/track/storage/'+
+      if (response.code === 200) {
+        console.log(1)
+        this.form.image =
+          'http://192.168.1.207:85/track/storage/' + response.data
+        console.log(this.form.image)
+      } else {
+        this.$alert(response.msg, '提示', {
+          confirmButtonText: '确定'
+        })
+      }
+    },
     handleRemove(file, fileList) {
       console.log(file, fileList)
     },
@@ -118,7 +146,7 @@ export default {
     },
     init() {
       console.log(this.token)
-      console.log(window.localStorage)
+      // console.log(new TokenKey().getToken())
       if (this.row) {
         this.form = JSON.parse(JSON.stringify(this.row))
         this.form.status = this.form.status.toString()

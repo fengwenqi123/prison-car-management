@@ -70,10 +70,10 @@
           <div class="fenye_left">
             <el-checkbox v-model="checked" @change="toggleSelection(tableData)">全选</el-checkbox>
             <el-button icon="el-icon-delete" size="small" @click="del" class="whiteButton">批量删除</el-button>
-            <el-button icon="el-icon-circle-check-outline" size="small" @click="Enable" class="whiteButton">批量启用
+            <!-- <el-button icon="el-icon-circle-check-outline" size="small" @click="Enable" class="whiteButton">批量启用
             </el-button>
             <el-button icon="el-icon-circle-close-outline" size="small" @click="Disable" class="whiteButton">批量禁用
-            </el-button>
+            </el-button> -->
             <span class="checkNum">已选择{{checkNum}}项</span>
           </div>
           <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="page.pageNum" :page-sizes="[10, 20, 30, 40]" layout="total, sizes, prev, pager, next, jumper" :total="page.total">

@@ -35,7 +35,7 @@
 <script>
 /* eslint-disable object-curly-spacing */
 
-import { findAuthorize, add } from '@/api/tracker'
+import { add,delt } from '@/api/tracker'
 
 export default {
   props: ['row', 'readonly'],
@@ -68,7 +68,7 @@ export default {
   },
   created() {
     this.init()
-    this.findAuth()
+    // this.findAuth()
   },
   methods: {
     init() {
@@ -79,24 +79,24 @@ export default {
       }
     },
     // 数据操作
-    findAuth() {
-      findAuthorize().then(response => {
-        this.authArr = response.data.dataList
-        if (this.form.id) {
-          if (this.form.layer.length < 4) {
-            this.parent = this.form.name
-          } else {
-            var leng = this.form.layer.substr(0, this.form.layer.length - 3)
-            var list = response.data.dataList
-            list.forEach((item, index) => {
-              if (leng === item.layer) {
-                this.parent = item.name
-              }
-            })
-          }
-        }
-      })
-    },
+    // findAuth() {
+    //   findAuthorize().then(response => {
+    //     this.authArr = response.data.dataList
+    //     if (this.form.id) {
+    //       if (this.form.layer.length < 4) {
+    //         this.parent = this.form.name
+    //       } else {
+    //         var leng = this.form.layer.substr(0, this.form.layer.length - 3)
+    //         var list = response.data.dataList
+    //         list.forEach((item, index) => {
+    //           if (leng === item.layer) {
+    //             this.parent = item.name
+    //           }
+    //         })
+    //       }
+    //     }
+    //   })
+    // },
     // 表单操作
     submitForm(formName) {
       this.$refs[formName].validate(valid => {

@@ -14,6 +14,8 @@
             <el-form-item>
               <el-button type="primary" icon="el-icon-search" size="small" @click="query" class="blueButton">查询
               </el-button>
+              <el-button plain type='info' icon="el-icon-refresh" size="small" @click="rest" class="blueButton">重置
+              </el-button>
             </el-form-item>
           </el-form>
           <div class="table_search_buttonLeft">
@@ -56,10 +58,10 @@
           <div class="fenye_left">
             <el-checkbox v-model="checked" @change="toggleSelection(tableData)">全选</el-checkbox>
             <el-button icon="el-icon-delete" size="small" @click="del" class="whiteButton">批量删除</el-button>
-            <el-button icon="el-icon-circle-check-outline" size="small" @click="Enable" class="whiteButton">批量启用
+            <!-- <el-button icon="el-icon-circle-check-outline" size="small" @click="Enable" class="whiteButton">批量启用
             </el-button>
             <el-button icon="el-icon-circle-close-outline" size="small" @click="Disable" class="whiteButton">批量禁用
-            </el-button>
+            </el-button> -->
             <span class="checkNum">已选择{{checkNum}}项</span>
           </div>
           <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="page.pageNum" :page-sizes="[10, 20, 30, 40]" layout="total, sizes, prev, pager, next, jumper" :total="page.total">
@@ -80,7 +82,7 @@
 
 import titleHeader from '@/components/title/index'
 import addChildren from './addChildren'
-import { lists, delt, enable, disable } from '@/api/tracker'
+import { lists, delt } from '@/api/tracker'
 
 export default {
   data() {
@@ -150,11 +152,16 @@ export default {
       this.page.pageNum = val
       this.list()
     },
+    // 查询
     query() {
       this.page.pageNum = 1
       this.list()
     },
-
+    // 重置
+    rest() {
+      this.keyword = ''
+      this.list()
+    },
     list() {
       lists(
         this.page.pageNum,
@@ -291,6 +298,7 @@ export default {
       this.addDialog = false
       this.row = null
       this.readonly = false
+      this.list()
     }
   }
 }

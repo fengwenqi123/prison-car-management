@@ -29,5 +29,5 @@ export function delt(id) {
   const data = qs.stringify({
     'id': id.join(',')
   })
-  return request.put('/videoDevice/delete', data)
+  return request.put('/videoDevice/remove', data)
 }
