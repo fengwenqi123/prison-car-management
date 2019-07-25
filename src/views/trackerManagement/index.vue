@@ -223,70 +223,70 @@ export default {
           })
         })
     },
-    Enable() {
-      if (this.selectData.length === 0) {
-        this.$message({
-          message: '请先选择'
-        })
-        return
-      }
-      this.$confirm('此操作即将启动, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      })
-        .then(() => {
-          var num = []
-          this.selectData.forEach((item, index) => {
-            num.push(item.id)
-          })
-          enable(num).then(response => {
-            this.$message({
-              message: response.msg,
-              type: 'success'
-            })
-            this.list()
-          })
-        })
-        .catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消操作'
-          })
-        })
-    },
-    Disable() {
-      if (this.selectData.length === 0) {
-        this.$message({
-          message: '请先选择'
-        })
-        return
-      }
-      this.$confirm('此操作即将启动, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      })
-        .then(() => {
-          var num = []
-          this.selectData.forEach((item, index) => {
-            num.push(item.id)
-          })
-          disable(num).then(response => {
-            this.$message({
-              message: response.msg,
-              type: 'success'
-            })
-            this.list()
-          })
-        })
-        .catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消操作'
-          })
-        })
-    },
+    // Enable() {
+    //   if (this.selectData.length === 0) {
+    //     this.$message({
+    //       message: '请先选择'
+    //     })
+    //     return
+    //   }
+    //   this.$confirm('此操作即将启动, 是否继续?', '提示', {
+    //     confirmButtonText: '确定',
+    //     cancelButtonText: '取消',
+    //     type: 'warning'
+    //   })
+    //     .then(() => {
+    //       var num = []
+    //       this.selectData.forEach((item, index) => {
+    //         num.push(item.id)
+    //       })
+    //       enable(num).then(response => {
+    //         this.$message({
+    //           message: response.msg,
+    //           type: 'success'
+    //         })
+    //         this.list()
+    //       })
+    //     })
+    //     .catch(() => {
+    //       this.$message({
+    //         type: 'info',
+    //         message: '已取消操作'
+    //       })
+    //     })
+    // },
+    // Disable() {
+    //   if (this.selectData.length === 0) {
+    //     this.$message({
+    //       message: '请先选择'
+    //     })
+    //     return
+    //   }
+    //   this.$confirm('此操作即将启动, 是否继续?', '提示', {
+    //     confirmButtonText: '确定',
+    //     cancelButtonText: '取消',
+    //     type: 'warning'
+    //   })
+    //     .then(() => {
+    //       var num = []
+    //       this.selectData.forEach((item, index) => {
+    //         num.push(item.id)
+    //       })
+    //       disable(num).then(response => {
+    //         this.$message({
+    //           message: response.msg,
+    //           type: 'success'
+    //         })
+    //         this.list()
+    //       })
+    //     })
+    //     .catch(() => {
+    //       this.$message({
+    //         type: 'info',
+    //         message: '已取消操作'
+    //       })
+    //     })
+    // },
     cancel() {
       this.handleClose()
     },
