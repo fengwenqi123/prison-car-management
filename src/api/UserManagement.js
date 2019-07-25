@@ -3,7 +3,7 @@ import qs from 'qs'
 
 export function lists(pageNum, pageSize, order, sort, status, keyword) {
   return request({
-    url: '/account/personnel',
+    url: '/personnel',
     method: 'GET',
     params: {
       pageNum,
