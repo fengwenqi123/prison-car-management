@@ -35,7 +35,7 @@
 <script>
 /* eslint-disable object-curly-spacing */
 
-import { add,delt } from '@/api/tracker'
+import { add } from '@/api/tracker'
 
 export default {
   props: ['row', 'readonly'],
