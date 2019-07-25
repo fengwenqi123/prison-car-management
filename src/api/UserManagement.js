@@ -18,7 +18,7 @@ export function lists(pageNum, pageSize, order, sort, status, keyword) {
 
 export function lists1(order, sort, status, departmentId, roleId, keyword) {
   return request({
-    url: '/account/personnel/list',
+    url: 'personnel/list',
     method: 'GET',
     params: {
       order,
@@ -33,7 +33,7 @@ export function lists1(order, sort, status, departmentId, roleId, keyword) {
 
 export function watch(id) {
   return request({
-    url: '/account/personnel/' + id,
+    url: 'personnel/' + id,
     method: 'GET'
   })
 }
@@ -41,7 +41,7 @@ export function watch(id) {
 export function add(form) {
   const data = qs.stringify(form)
   return request({
-    url: '/account/personnel',
+    url: 'personnel',
     method: 'POST',
     data
   })
@@ -51,26 +51,26 @@ export function delt(id) {
   const data = qs.stringify({
     'id': id.join(',')
   })
-  return request.put('/account/personnel/remove', data)
+  return request.put('personnel/remove', data)
 }
 
 export function enable(id) {
   const data = qs.stringify({
     'id': id.join(',')
   })
-  return request.put('/account/personnel/enable', data)
+  return request.put('personnel/enable', data)
 }
 
 export function disable(id) {
   const data = qs.stringify({
     'id': id.join(',')
   })
-  return request.put('/account/personnel/disable', data)
+  return request.put('personnel/disable', data)
 }
 
 export function getDepartArr() {
   return request({
-    url: '/account/department',
+    url: 'department',
     method: 'GET',
     params: {
       'order': 'layer',
@@ -81,7 +81,7 @@ export function getDepartArr() {
 
 export function getRoleArr() {
   return request({
-    url: '/account/role',
+    url: '/role',
     method: 'GET',
     params: {
       'pageSize': 5000,
@@ -94,12 +94,12 @@ export function resetpassword(id) {
   const data = qs.stringify({
     'id': id.join(',')
   })
-  return request.put('/account/personnel/passwordReset', data)
+  return request.put('/personnel/passwordReset', data)
 }
 
 export function findRoleById(personnelId) {
   return request({
-    url: '/account/role/findListByPersonnel',
+    url: '/role/findListByPersonnel',
     method: 'GET',
     params: {
       personnelId
@@ -109,7 +109,7 @@ export function findRoleById(personnelId) {
 
 export function findDepById(personnelId) {
   return request({
-    url: '/account/department/findListByPersonnel',
+    url: '/department/findListByPersonnel',
     method: 'GET',
     params: {
       personnelId

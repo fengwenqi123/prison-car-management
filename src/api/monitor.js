@@ -1,9 +1,9 @@
 import request from '@/utils/request'
 import qs from 'qs'
 
-export function lists(pageNum, pageSize, order, sort, keyword, mapId) {
+export function lists(pageNum, pageSize, order, sort, keyword, irradiationArea) {
   return request({
-    url: 'positionDevice/',
+    url: 'videoDevice/devices',
     method: 'GET',
     params: {
       pageNum,
@@ -11,7 +11,7 @@ export function lists(pageNum, pageSize, order, sort, keyword, mapId) {
       order,
       sort,
       keyword,
-      mapId
+      irradiationArea
     }
   })
 }
@@ -19,7 +19,7 @@ export function lists(pageNum, pageSize, order, sort, keyword, mapId) {
 export function add(form) {
   const data = qs.stringify(form)
   return request({
-    url: 'positionDevice/',
+    url: '/videoDevice/save',
     method: 'POST',
     data
   })
@@ -29,5 +29,5 @@ export function delt(id) {
   const data = qs.stringify({
     'id': id.join(',')
   })
-  return request.put('/positionDevice/remove', data)
+  return request.put('/videoDevice/remove', data)
 }

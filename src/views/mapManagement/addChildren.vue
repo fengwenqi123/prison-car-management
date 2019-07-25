@@ -4,63 +4,42 @@
       <el-scrollbar class="scrolls">
         <div class="table_form">
           <el-form :model="form" status-icon :rules="rules" ref="addForm" :label-width="labelWidth">
-            <el-form-item label="上级权限:" prop="supAuth">
-              <el-input v-model="parent" v-if="this.form.id" disabled>
-              </el-input>
-              <select name="supLayer" v-model="form.supLayer" class="select" v-if="!this.form.id">
-                <option value="">请选择</option>
-                <option v-for="item in authArr" :value="item.layer" :key="item.id">
-                  <span v-if="item.layer && item.layer.length==3" v-text="item.name"></span>
-                  <span v-if="item.layer && item.layer.length==6" v-text="'　┝ '+item.name"></span>
-                  <span v-if="item.layer && item.layer.length==9" v-text="'　　┝ '+item.name"></span>
-                  <span v-if="item.layer && item.layer.length==12" v-text="'　　　　┝ '+item.name"></span>
-                  <span v-if="item.layer && item.layer.length==15" v-text="'　　　　　　┝ '+item.name"></span>
-                </option>
-              </select>
-            </el-form-item>
-            <el-form-item label="权限名称:" prop="name">
-              <el-input
-                :readonly="readonly"
-                placeholder="请输入权限名称"
-                v-model="form.name"
-                clearable>
+            <el-form-item label="编码:" prop="code">
+              <el-input :readonly="readonly" placeholder="请输入车牌号码" v-model="form.code" clearable>
               </el-input>
             </el-form-item>
-            <el-form-item label="权限值:" prop="actionValue">
-              <el-input
-                :readonly="readonly"
-                placeholder="请输入权限值"
-                v-model="form.actionValue"
-                clearable>
+            <el-form-item label="名称:" prop="name">
+              <el-input :readonly="readonly" placeholder="请登记驾驶员" v-model="form.name" clearable>
               </el-input>
             </el-form-item>
-            <el-form-item label="排序:" prop="sort">
-              <el-input
-                :readonly="readonly"
-                placeholder="请输入排序"
-                v-model="form.sort"
-                clearable>
-              </el-input>
+            <el-form-item label="部门ID:">
+              <el-select v-model="form.departmentId" placeholder="请选择">
+                <el-option v-for="item in options" :key="item.value" :label="item.name" :value="item.id" :disabled="readonly">
+                </el-option>
+              </el-select>
             </el-form-item>
             <el-form-item label="备注:" prop="description">
-              <el-input
-                :readonly="readonly"
-                type="textarea"
-                :rows="6"
-                placeholder="请输入备注"
-                v-model="form.description">
-              </el-input>
+              <el-input type="textarea" :readonly="readonly" placeholder="请填写事由" v-model="form.description" clearable></el-input>
             </el-form-item>
             <el-form-item label="状态:" prop="status">
-              <el-radio :readonly="readonly" v-model="form.status.toString()" label='1'>启用</el-radio>
-              <el-radio :readonly="readonly" v-model="form.status.toString()" label='2'>禁用</el-radio>
+              <el-radio :readonly="readonly" v-model="form.status" label='1' :disabled="readonly">启用</el-radio>
+              <el-radio :readonly="readonly" v-model="form.status" label='2' :disabled="readonly">禁用</el-radio>
+            </el-form-item>
+
+            <el-form-item label="上传图片:">
+              <el-upload action=" http://192.168.1.207:85/track/storage/" :disabled="readonly" :headers="headers" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-remove="handleRemove" :on-success="success">
+                <i class="el-icon-plus"></i>
+              </el-upload>
+              <el-dialog :visible.sync="dialogVisible">
+                <img width="100%" :src="dialogImageUrl" alt="">
+              </el-dialog>
             </el-form-item>
           </el-form>
         </div>
       </el-scrollbar>
     </div>
     <div slot="footer" class="dialog-footer">
-      <el-button icon="el-icon-document" size="small" @click="submitForm('addForm')" class="blueButton">保存
+      <el-button v-if="!readonly" icon="el-icon-document" size="small" @click="submitForm('addForm')" class="blueButton">保存
       </el-button>
       <el-button icon="el-icon-refresh-left" size="small" @click="cancel" class="whiteButton">返回</el-button>
     </div>
@@ -68,117 +47,156 @@
 </template>
 
 <script>
-  /* eslint-disable object-curly-spacing */
-
-  import {findAuthorize, add} from '@/api/AuthorizeManagement'
-
-  export default {
-    props: ['row', 'readonly'],
-    data() {
+/* eslint-disable object-curly-spacing */
+import { add } from '@/api/map'
+import { lists } from '@/api/department'
+import { TokenKey } from '@/utils/auth'
+export default {
+  props: ['row', 'readonly'],
+  data() {
+    return {
+      dialogImageUrl: '',
+      dialogVisible: false,
+      // token
+      token: new TokenKey().getToken(),
+      // 表单属性
+      labelWidth: '100px',
+      // 数据
+      parent: null,
+      disabled: false,
+      authArr: [],
+      // 表单内容
+      form: {
+        id: null,
+        code: null,
+        name: null,
+        image: null,
+        departmentId: null,
+        description: null,
+        status: '1'
+      },
+      // 表单验证
+      rules: {
+        name: [{ required: true, message: '请输入权限名称', trigger: 'blur' }],
+        actionValue: [
+          { required: true, message: '请输入权限值', trigger: 'blur' }
+        ],
+        sort: [{ required: true, message: '请输入排序', trigger: 'blur' }]
+      },
+      page: {
+        pageSize: 10,
+        pageNum: 1,
+        total: 0
+      },
+      sort: '',
+      order: '',
+      options: []
+    }
+  },
+  computed: {
+    headers() {
       return {
-        // 表单属性
-        labelWidth: '100px',
-        // 数据
-        parent: null,
-        disabled: false,
-        authArr: [],
-        // 表单内容
-        form: {
-          id: null,
-          supLayer: null,
-          name: null,
-          actionValue: null,
-          sort: null,
-          description: null,
-          status: '1'
-        },
-        // 表单验证
-        rules: {
-          name: [{required: true, message: '请输入权限名称', trigger: 'blur'}],
-          actionValue: [{required: true, message: '请输入权限值', trigger: 'blur'}],
-          sort: [{required: true, message: '请输入排序', trigger: 'blur'}]
-        }
-      }
-    },
-    created() {
-      this.init()
-      this.findAuth()
-    },
-    methods: {
-      init() {
-        if (this.row) {
-          this.form = JSON.parse(JSON.stringify(this.row))
-        }
-      },
-      // 数据操作
-      findAuth() {
-        findAuthorize().then(response => {
-          this.authArr = response.data.dataList
-          if (this.form.id) {
-            if (this.form.layer.length < 4) {
-              this.parent = this.form.name
-            } else {
-              var leng = this.form.layer.substr(0, this.form.layer.length - 3)
-              var list = response.data.dataList
-              list.forEach((item, index) => {
-                if (leng === item.layer) {
-                  this.parent = item.name
-                }
-              })
-            }
-          }
-        })
-      },
-      // 表单操作
-      submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            add(this.form).then(response => {
-              this.$message({
-                message: response.msg,
-                type: 'success'
-              })
-              this.submit()
-            })
-          } else {
-            console.log('error submit!!')
-            return false
-          }
-        })
-      },
-      submit() {
-        this.$emit('submit')
-      },
-      cancel() {
-        this.$emit('cancel')
+        accessToken: this.token
       }
     }
-
+  },
+  created() {
+    this.init()
+    // this.findAuth()
+    this.getList()
+  },
+  methods: {
+    // 图片操作
+    success(response, file, fileList) {
+      // console.log(response)
+      // console.log(file)
+      // console.log(fileList)
+      // this.form.image = 'http://192.168.1.207:85/track/storage/'+
+      if (response.code === 200) {
+        console.log(1)
+        this.form.image =
+          'http://192.168.1.207:85/track/storage/' + response.data
+        console.log(this.form.image)
+      } else {
+        this.$alert(response.msg, '提示', {
+          confirmButtonText: '确定'
+        })
+      }
+    },
+    handleRemove(file, fileList) {
+      console.log(file, fileList)
+    },
+    handlePictureCardPreview(file) {
+      this.dialogImageUrl = file.url
+      this.dialogVisible = true
+    },
+    getList() {
+      lists(
+        this.page.pageNum,
+        this.page.pageSize,
+        this.order,
+        this.sort,
+        this.status,
+        this.keyword
+      ).then(response => {
+        this.options = response.data.dataList
+        this.page = response.data.page
+        console.log(this.options)
+      })
+    },
+    init() {
+      console.log(this.token)
+      // console.log(new TokenKey().getToken())
+      if (this.row) {
+        this.form = JSON.parse(JSON.stringify(this.row))
+        this.form.status = this.form.status.toString()
+      }
+    },
+    // 数据操作
+    // findAuth() {
+    //   findAuthorize().then(response => {
+    //     this.authArr = response.data.dataList
+    //     if (this.form.id) {
+    //       if (this.form.layer.length < 4) {
+    //         this.parent = this.form.name
+    //       } else {
+    //         var leng = this.form.layer.substr(0, this.form.layer.length - 3)
+    //         var list = response.data.dataList
+    //         list.forEach((item, index) => {
+    //           if (leng === item.layer) {
+    //             this.parent = item.name
+    //           }
+    //         })
+    //       }
+    //     }
+    //   })
+    // },
+    // 表单操作
+    submitForm(formName) {
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          add(this.form).then(response => {
+            this.$message({
+              message: response.msg,
+              type: 'success'
+            })
+            this.submit()
+          })
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
+    },
+    submit() {
+      this.$emit('submit')
+    },
+    cancel() {
+      this.$emit('cancel')
+    }
   }
+}
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-  .container {
-    margin-top: 20px;
-
-    .select {
-      background-color: #FFF;
-      background-image: none;
-      border-radius: 4px;
-      border: 1px solid #DCDFE6;
-      -webkit-box-sizing: border-box;
-      box-sizing: border-box;
-      color: #606266;
-      display: inline-block;
-      font-size: inherit;
-      height: 32px;
-      line-height: 32px;
-      outline: 0;
-      padding: 0 15px;
-      -webkit-transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
-      transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
-      width: 232px;
-    }
-  }
-
 </style>

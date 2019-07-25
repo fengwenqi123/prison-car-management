@@ -3,7 +3,7 @@ import qs from 'qs'
 
 export function lists(pageNum, pageSize, order, sort, status, keyword) {
   return request({
-    url: '/account/department',
+    url: 'department',
     method: 'GET',
     params: {
       pageNum,
@@ -19,7 +19,7 @@ export function lists(pageNum, pageSize, order, sort, status, keyword) {
 export function add(form) {
   const data = qs.stringify(form)
   return request({
-    url: '/account/department',
+    url: '/department',
     method: 'POST',
     data
   })
@@ -29,12 +29,12 @@ export function delt(id) {
   const data = qs.stringify({
     'id': id.join(',')
   })
-  return request.put('/account/department/remove', data)
+  return request.put('/department/remove', data)
 }
 
 export function findDep() {
   return request({
-    url: '/account/department',
+    url: '/department',
     method: 'GET',
     params: {
       'pageNum': 1,
@@ -48,14 +48,14 @@ export function findDep() {
 
 export function findDepName(id) {
   return request({
-    url: '/account/department' + id,
+    url: '/department' + id,
     method: 'GET'
   })
 }
 
 export function findDepartmentsByPersonnel(personnelId) {
   return request({
-    url: '/account/department/findDepartmentsByPersonnel',
+    url: '/department/findDepartmentsByPersonnel',
     method: 'GET',
     params: {
       personnelId
@@ -65,7 +65,7 @@ export function findDepartmentsByPersonnel(personnelId) {
 
 export function findListByLayer(layer) {
   return request({
-    url: '/account/department/findListByLayer',
+    url: '/department/findListByLayer',
     method: 'GET',
     params: {
       layer
