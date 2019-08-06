@@ -16,6 +16,7 @@ import '@/assets/icon/iconfont.css'
 Vue.use(Element, {
   size: 'small'
 })
+Vue.prototype.upLoadUrl = 'http://192.168.1.207:8100/storage/'
 
 Vue.config.productionTip = false
 new Vue({
