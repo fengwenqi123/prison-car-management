@@ -148,6 +148,7 @@ export default {
     this.init()
     // this.findAuth()
     this.getList()
+    this.pic()
   },
   methods: {
     // 图片操作
@@ -162,7 +163,8 @@ export default {
       }
     },
     handleRemove(file, fileList) {
-      console.log(file, fileList)
+      this.form.image = ''
+      console.log(this.form.image)
     },
     handlePictureCardPreview(file) {
       this.dialogImageUrl = file.url
@@ -182,10 +184,20 @@ export default {
         console.log(this.options)
       })
     },
+    pic() {
+      var tmp = this.row
+      if (!tmp && typeof tmp !== 'undefined' && tmp !== 0) {
+        return
+      }
+      if (this.row.image === '') {
+        return
+      } else {
+        this.fileList.push({
+          url: this.row.image
+        })
+      }
+    },
     init() {
-      this.fileList.push({
-        url: this.row.image
-      })
       if (this.row) {
         this.form = JSON.parse(JSON.stringify(this.row))
         this.form.status = this.form.status.toString()
@@ -193,6 +205,7 @@ export default {
     },
     // 表单操作
     submitForm(formName) {
+      console.log(this.form.image)
       this.$refs[formName].validate(valid => {
         if (valid) {
           add(this.form).then(response => {
