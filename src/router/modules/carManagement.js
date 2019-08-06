@@ -27,6 +27,13 @@ const car = {
     name: 'trackerManagement',
     component: () => import('@/views/trackerManagement/index'),
     meta: {title: '追踪器管理', roles: ['sys:role']}
+  },
+  {
+    path: 'playBack/:id',
+    name: 'playBack',
+    hidden: true,
+    component: () => import('@/views/playBack/index'),
+    meta: {title: '轨迹回放', roles: ['sys:authorize']}
   }
   ]
 }

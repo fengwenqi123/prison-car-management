@@ -8,7 +8,8 @@ import Layout from '../views/layout/Layout'
 import system from './modules/system'
 import car from './modules/carManagement'
 import monitor from './modules/monitorManagement'
-import map from './modules/mapManagement'
+import mapManage from './modules/mapManagement'
+import screen from './modules/screen'
 
 export const constantRouterMap = [
   {
@@ -39,6 +40,12 @@ export const constantRouterMap = [
       component: () => import('@/views/ModPassword/index.vue'),
       meta: {title: '修改密码', icon: 'tree'},
       hidden: true
+    }, {
+      path: 'mapView/:id/:lon/:lat',
+      name: 'mapView',
+      component: () => import('@/views/map/map.vue'),
+      meta: {title: '地图', icon: 'tree'},
+      hidden: true
     }]
   }
 ]
@@ -48,8 +55,9 @@ export default new Router({
   routes: constantRouterMap
 })
 export const asyncRouterMap = [
+  screen,
   car,
-  map,
+  mapManage,
   monitor,
   system,
   {path: '*', redirect: '/404', hidden: true}

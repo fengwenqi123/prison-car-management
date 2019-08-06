@@ -60,7 +60,7 @@
   @import "src/styles/mixin.scss";
 
   .app-wrapper {
-    background: rgba(24, 144, 255, 1);
+    background: #252A2F;
 
     .appmain {
       padding-top: 68px;
@@ -102,7 +102,7 @@
       z-index: 100;
       width: 180px;
       height: 68px;
-      background: rgba(24, 144, 255, 1);
+      background: #252A2F;
       display: flex;
       justify-content: center;
       align-items: center;

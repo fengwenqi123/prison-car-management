@@ -47,3 +47,23 @@ export function line(pageNum, pageSize, order, sort, mapId, status, keyword) {
     }
   })
 }
+
+export function out(id) {
+  return request({
+    url: 'visitorInfo/end',
+    method: 'PUT',
+    params: {
+      id
+    }
+  })
+}
+
+export function playback(id) {
+  return request({
+    url: 'visitorHistoryInfo/playback',
+    method: 'GET',
+    params: {
+      id
+    }
+  })
+}

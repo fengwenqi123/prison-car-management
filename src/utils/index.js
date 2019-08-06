@@ -142,8 +142,38 @@ export function getCurrentMonthLast() {
 
 export function toboolean(val) {
   switch (val.toLowerCase()) {
-    case 'true': case 1: case 'yes': return true
-    case 'false': case 0: case 'no': case null: return false
-    default:return Boolean(val)
+    case 'true':
+    case 1:
+    case 'yes':
+      return true
+    case 'false':
+    case 0:
+    case 'no':
+    case null:
+      return false
+    default:
+      return Boolean(val)
   }
+}
+
+export function getAbsLeft(obj) {
+  var l = obj.offsetLeft
+  while (obj.offsetParent != null) {
+    obj = obj.offsetParent
+    l += obj.offsetLeft
+  }
+  return l
+}
+
+export function timeDifference(date3) {
+  var leave1 = date3 % (24 * 3600 * 1000) // 计算天数后剩余的毫秒数
+  var hours = Math.floor(leave1 / (3600 * 1000))
+  // 计算相差分钟数
+  var leave2 = leave1 % (3600 * 1000) // 计算小时数后剩余的毫秒数
+  var minutes = Math.floor(leave2 / (60 * 1000))
+  // 计算相差秒数
+  var leave3 = leave2 % (60 * 1000) // 计算分钟数后剩余的毫秒数
+  var seconds = Math.round(leave3 / 1000)
+  var timeDiff = hours + '小时' + minutes + '分钟' + seconds + '秒'
+  return timeDiff
 }

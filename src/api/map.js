@@ -46,3 +46,20 @@ export function disable(id) {
   })
   return request.put('map/disable', data)
 }
+
+export function findCarByMapId(mapId) {
+  return request({
+    url: 'visitorInfo/findListByMapId',
+    method: 'GET',
+    params: {
+      mapId
+    }
+  })
+}
+
+export function screen() {
+  return request({
+    url: 'map/splitScreen',
+    method: 'GET'
+  })
+}

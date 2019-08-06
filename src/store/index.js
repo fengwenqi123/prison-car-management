@@ -5,6 +5,8 @@ import permission from './modules/permission'
 import user from './modules/user'
 import getters from './getters'
 import tagsView from './modules/tagsView'
+import gis from './modules/gis'
+import carData from './modules/carData'
 
 Vue.use(Vuex)
 
@@ -13,7 +15,9 @@ const store = new Vuex.Store({
     app,
     tagsView,
     permission,
-    user
+    user,
+    gis,
+    carData
   },
   getters
 })

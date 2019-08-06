@@ -31,3 +31,23 @@ export function delt(id) {
   })
   return request.put('/positionDevice/remove', data)
 }
+
+export function trackerById(mapId) {
+  return request({
+    url: 'positionDevice/list/unUse',
+    method: 'GET',
+    params: {
+      mapId
+    }
+  })
+}
+
+export function findTrackById(id) {
+  return request({
+    url: 'positionDevice',
+    method: 'GET',
+    params: {
+      id
+    }
+  })
+}

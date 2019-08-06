@@ -1,9 +1,14 @@
 <template>
   <div class="dashboard-container">
-    点餐宝首页
+    <map-list></map-list>
   </div>
 </template>
 
 <script>
-  export default {}
+  import mapList from '@/views/map/mapList'
+  export default {
+    components: {
+      mapList
+    }
+  }
 </script>

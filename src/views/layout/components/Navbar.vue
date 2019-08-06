@@ -3,6 +3,18 @@
     <el-menu class="navbar" mode="horizontal">
       <img :src="title" class="title" alt="">
       <div class="tabs">
+        <div class="item">
+          <router-link to="/screen">
+            <svg-icon icon-class="screen"></svg-icon>
+            分屏展示
+          </router-link>
+        </div>
+        <div class="item" style="margin-left: 12px;">
+          <router-link to="/home">
+            <svg-icon icon-class="home"></svg-icon>
+            地图首页
+          </router-link>
+        </div>
         <el-popover
           placement="bottom"
           width="150"
@@ -10,8 +22,8 @@
           <ul class="ul1">
             <li>
               <div class="item" @click="modPassword">
-                  <i class="el-icon-edit"></i>
-                  修改密码
+                <i class="el-icon-edit"></i>
+                修改密码
               </div>
             </li>
             <li>
@@ -23,7 +35,7 @@
           </ul>
           <div slot="reference" class="avatar-wrapper">
             <svg-icon icon-class="avatar" class="user-avatar"></svg-icon>
-            <p style="color: #1890ff;">{{name}}</p>
+            <p style="color: #888888;">{{name}}</p>
           </div>
         </el-popover>
       </div>
@@ -125,10 +137,10 @@
     height: 68px;
     line-height: 50px;
     border-radius: 0px !important;
-    background: rgba(24, 144, 255, 1);
+    background: #252A2F;
 
     .title {
-      width: 290px;
+      width: 312px;
       margin-top: 15px;
       position: absolute;
       z-index: 19;
@@ -180,7 +192,7 @@
     .avatar-wrapper {
       width: auto;
       padding: 10px;
-      border-radius:20px;
+      border-radius: 20px;
       height: 32px;
       cursor: pointer;
       margin-right: 2px;
@@ -193,7 +205,7 @@
         border-radius: 50%;
         margin-right: 10px;
         font-size: 22px;
-        color: #1890ff;
+        color: #888888;
       }
     }
 
@@ -277,6 +289,28 @@
       height: 68px;
       justify-content: center;
       align-items: center;
+
+      .item {
+        a {
+          width: auto;
+          padding: 10px;
+          border-radius: 20px;
+          height: 32px;
+          cursor: pointer;
+          margin-right: 2px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: #fff;
+          color: #888888;
+
+          .svg-icon {
+            font-size: 20px;
+            color: #888888;
+            margin-right: 4px;
+          }
+        }
+      }
 
       span {
         color: #ffff;

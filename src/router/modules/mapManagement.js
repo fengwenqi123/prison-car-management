@@ -2,7 +2,7 @@
 /** When your routing table is too long, you can split it into small modules**/
 import Layout from '@/views/layout/Layout'
 
-const map = {
+const mapManage = {
   path: '/map',
   component: Layout,
   redirect: '/map/mapManagement',
@@ -19,4 +19,4 @@ const map = {
   ]
 }
 
-export default map
+export default mapManage
