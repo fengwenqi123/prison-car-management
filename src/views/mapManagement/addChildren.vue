@@ -186,7 +186,7 @@ export default {
     },
     pic() {
       var tmp = this.row
-      if (!tmp && typeof tmp != 'undefined' && tmp != 0) {
+      if (!tmp && typeof tmp !== 'undefined' && tmp !== 0) {
         return
       }
       if (this.row.image === '') {
