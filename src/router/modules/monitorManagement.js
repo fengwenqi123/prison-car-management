@@ -8,12 +8,12 @@ const monitor = {
   redirect: '/monitor/monitorManagement',
   name: 'monitor',
   alwaysShow: true,
-  meta: {title: '监控管理', icon: 'xtgl1', roles: ['sys']},
+  meta: {title: '监控管理', icon: 'xtgl1', roles: ['monitor']},
   children: [{
     path: 'monitorManagement',
     name: 'monitorManagement',
     component: () => import('@/views/monitorManagement/index'),
-    meta: {title: '监控设备', roles: ['sys:authorize']}
+    meta: {title: '监控设备', roles: ['monitor:management']}
   }
   ]
 }

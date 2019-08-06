@@ -8,13 +8,13 @@ const mapManage = {
   redirect: '/map/mapManagement',
   name: 'map',
   alwaysShow: true,
-  meta: {title: '地图信息管理', icon: 'xtgl1', roles: ['sys']},
+  meta: {title: '地图信息管理', icon: 'xtgl1', roles: ['map']},
   children: [
     {
       path: 'mapManagement',
       name: 'mapManagement',
       component: () => import('@/views/mapManagement/index'),
-      meta: {title: '地图管理', roles: ['sys:authorize']}
+      meta: {title: '地图管理', roles: ['map:management']}
     }
   ]
 }
