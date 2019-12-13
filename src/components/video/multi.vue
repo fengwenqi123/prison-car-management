@@ -41,7 +41,7 @@
     testocx.PlayIndex = index
     testocx.TransType = 0
     testocx.Ipaddress = item.ip
-    testocx.MediaServerIP = '127.0.0.1'
+    testocx.MediaServerIP = '192.168.253.54'
     testocx.Channel = item.channel
     testocx.Username = item.account
     testocx.Password = item.password

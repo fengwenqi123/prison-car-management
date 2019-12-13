@@ -39,10 +39,10 @@
             </el-table-column>
             <el-table-column prop="image" label="图片路径">
               <template slot-scope="scope">
-                <img :src="scope.row.image" width="120" height="120"/>
+                <img v-if="scope.row.image!==''" :src="scope.row.image" width="120" height="120"/>
               </template>
             </el-table-column>
-            <el-table-column prop="departmentId" label="部门">
+            <el-table-column prop="departmentName" label="部门">
             </el-table-column>
             <el-table-column prop="description" label="备注">
             </el-table-column>

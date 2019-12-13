@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+import requestNoLoad from '@/utils/requestNoLoad'
 import qs from 'qs'
 
 export function lists(pageNum, pageSize, order, sort, status, keyword, departmentId) {
@@ -48,8 +49,8 @@ export function disable(id) {
 }
 
 export function findCarByMapId(mapId) {
-  return request({
-    url: 'visitorInfo/findListByMapId',
+  return requestNoLoad({
+    url: 'visitorInfo/findListByMapId?time=' + new Date().getTime(),
     method: 'GET',
     params: {
       mapId

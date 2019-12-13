@@ -38,10 +38,10 @@
             </el-form-item>
 
             <el-form-item label="上传图片:">
-              <el-upload action=" http://192.168.1.207:8100/storage/" :disabled="readonly" :headers="headers" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-remove="handleRemove" :on-success="success" :limit="1" :file-list="fileList">
+              <el-upload :action="upLoadUrl" :disabled="readonly" :headers="headers" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-remove="handleRemove" :on-success="success" :limit="1" :file-list="fileList">
                 <i class="el-icon-plus"></i>
               </el-upload>
-              <el-dialog :visible.sync="dialogVisible">
+              <el-dialog :visible.sync="dialogVisible" append-to-body>
                 <img width="100%" :src="dialogImageUrl" alt="">
               </el-dialog>
             </el-form-item>
@@ -142,7 +142,7 @@ export default {
         accessToken: this.token
       }
     },
-    ...mapGetters(['area', 'pointObj'])
+    ...mapGetters(['area', 'pointObj', 'upLoadUrl'])
   },
   created() {
     this.init()
@@ -154,7 +154,7 @@ export default {
     // 图片操作
     success(response, file, fileList) {
       if (response.code === 200) {
-        this.form.image = 'http://192.168.1.207:8100/storage/' + response.data
+        this.form.image = this.upLoadUrl + response.data
         console.log(this.form.image)
       } else {
         this.$alert(response.msg, '提示', {
