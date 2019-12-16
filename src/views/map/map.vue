@@ -8,12 +8,12 @@
         车辆登记
       </div>
       <div class="car-list">
-        <car-info :carList="carList"></car-info>
+        <car-info :carList="carList" @faka="faka"></car-info>
       </div>
     </div>
     <div class="cardialog" v-if="cardialog">
-      <el-dialog title="车辆登记" :visible.sync="cardialog" width="60%" top="15vh">
-        <register :mapId="mapId" @closeDialog="closeDialog"></register>
+      <el-dialog title="车辆登记" :visible.sync="cardialog" width="60%" top="15vh" @close="closeDialog">
+        <register :mapId="mapId" :carValue="carValue" @closeDialog="closeDialog"></register>
       </el-dialog>
     </div>
   </div>
@@ -31,7 +31,7 @@
   import {findCarByMapId} from '@/api/map.js'
   import {singleTrackMoveTest} from '@/assets/gis/track.js'
   import {addInfoLayers} from '@/assets/gis/HTool.js'
-
+  import {getCar} from '@/api/histor'
   export default {
     data() {
       return {
@@ -39,7 +39,8 @@
         mapId: null,
         carData: [],
         interval: null,
-        carList: null
+        carList: null,
+        carValue: null
       }
     },
     computed: {
@@ -68,6 +69,10 @@
       }
     },
     methods: {
+      faka(item) {
+        this.carValue = item
+        this.register()
+      },
       getQuery() {
         this.mapId = this.$route.params.id
         const lon = parseFloat(this.$route.params.lon)
@@ -80,32 +85,58 @@
       },
       closeDialog() {
         this.cardialog = false
+        this.carValue = null
       },
       _addInfoLayers() {
         addInfoLayers(this.app)
       },
       _findCarByMapId() {
         findCarByMapId(this.mapId).then(response => {
-          this.carList = response.data
-          if (!this.carArr) {
-            this.$store.commit('addCarInfo', response.data)
-          } else {
-            this.carData = []
-            var data = response.data
-            data.forEach((item, index) => {
-              this.carArr.forEach((car, i) => {
-                if (car.id === item.id) {
-                  let obj = {}
-                  obj.start = [car.longitude, car.latitude]
-                  obj.end = [item.longitude, item.latitude, item.course]
-                  obj.carInfo = item
-                  this.carData.push(obj)
-                }
+          getCar(1, 8, '', '', '', '', '', '1').then(response1 => {
+            var carList = [...response.data, ...response1.data.dataList]
+            // carList.forEach((item) => {
+            //   delete item.carBean
+            // })
+            this.carList = carList
+            if (!this.carArr) {
+              this.$store.commit('addCarInfo', response.data)
+            } else {
+              this.carData = []
+              var data = response.data
+              data.forEach((item, index) => {
+                this.carArr.forEach((car, i) => {
+                  if (car.id === item.id) {
+                    let obj = {}
+                    obj.start = [car.longitude, car.latitude]
+                    obj.end = [item.longitude, item.latitude, item.course]
+                    obj.carInfo = item
+                    this.carData.push(obj)
+                  }
+                })
               })
-            })
-            this.$store.commit('addCarInfo', response.data)
-            singleTrackMoveTest(this.carData)
-          }
+              this.$store.commit('addCarInfo', response.data)
+              singleTrackMoveTest(this.carData)
+            }
+          })
+          // if (!this.carArr) {
+          //   this.$store.commit('addCarInfo', response.data)
+          // } else {
+          //   this.carData = []
+          //   var data = response.data
+          //   data.forEach((item, index) => {
+          //     this.carArr.forEach((car, i) => {
+          //       if (car.id === item.id) {
+          //         let obj = {}
+          //         obj.start = [car.longitude, car.latitude]
+          //         obj.end = [item.longitude, item.latitude, item.course]
+          //         obj.carInfo = item
+          //         this.carData.push(obj)
+          //       }
+          //     })
+          //   })
+          //   this.$store.commit('addCarInfo', response.data)
+          //   singleTrackMoveTest(this.carData)
+          // }
         })
       }
     }

@@ -1,84 +1,89 @@
 <template>
   <div class="containers">
-    <div class="car-info" v-for="(item,index) in carLists" :key="index">
-      <div class="car-info-title" @click="selectActive(index)">
-        <div class="left">
-          <div class="icon" :class="{errorIcon:item.alert}">
-            <svg-icon icon-class="carInfo"></svg-icon>
+    <el-scrollbar class="scrolls">
+      <div class="car-info" v-for="(item,index) in carLists" :key="index">
+        <div class="car-info-title" @click="selectActive(index)">
+          <div class="left">
+            <div class="icon" :class="{errorIcon:item.alert}">
+              <svg-icon icon-class="carInfo"></svg-icon>
+            </div>
+            <div class="name">
+              {{item.license}}
+            </div>
           </div>
-          <div class="name">
-            {{item.license}}
+          <div class="right">
+            <div class="out" v-if="item.status===1" @click="faka(item)">
+              发卡
+            </div>
+            <div class="out" v-if="item.status===2" @click="carOut(item.id)">
+              驶离
+            </div>
           </div>
         </div>
-        <div class="right">
-          <div class="out" @click="carOut(item.id)">
-            驶离
+        <el-collapse-transition>
+          <div class="car-info-list" v-if="index===active">
+            <div class="form">
+              <div class="item">
+                <div class="label">
+                  随车民警
+                </div>
+                <div class="value">
+                  {{item.police}}
+                </div>
+              </div>
+              <div class="item">
+                <div class="label">
+                  驾驶员
+                </div>
+                <div class="value">
+                  {{item.pilot}}
+                </div>
+              </div>
+              <div class="item">
+                <div class="label">
+                  联系方式
+                </div>
+                <div class="value">
+                  {{item.mobile}}
+                </div>
+              </div>
+              <div class="item">
+                <div class="label">
+                  身份证号码
+                </div>
+                <div class="value">
+                  {{item.idCard}}
+                </div>
+              </div>
+              <div class="item">
+                <div class="label">
+                  进入时间
+                </div>
+                <div class="value">
+                  {{item.addTimeString}}
+                </div>
+              </div>
+              <div class="item">
+                <div class="label">
+                  停留时间
+                </div>
+                <div class="value">
+                  {{item.addTimeString | nowTime}}
+                </div>
+              </div>
+              <div class="item">
+                <div class="label">
+                  跟踪器
+                </div>
+                <div class="value">
+                  {{item.trackerName}}
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+        </el-collapse-transition>
       </div>
-      <el-collapse-transition>
-        <div class="car-info-list" v-if="index===active">
-          <div class="form">
-            <div class="item">
-              <div class="label">
-                随车民警
-              </div>
-              <div class="value">
-                {{item.police}}
-              </div>
-            </div>
-            <div class="item">
-              <div class="label">
-                驾驶员
-              </div>
-              <div class="value">
-                {{item.pilot}}
-              </div>
-            </div>
-            <div class="item">
-              <div class="label">
-                联系方式
-              </div>
-              <div class="value">
-                {{item.mobile}}
-              </div>
-            </div>
-            <div class="item">
-              <div class="label">
-                身份证号码
-              </div>
-              <div class="value">
-                {{item.idCard}}
-              </div>
-            </div>
-            <div class="item">
-              <div class="label">
-                进入时间
-              </div>
-              <div class="value">
-                {{item.addTimeString}}
-              </div>
-            </div>
-            <div class="item">
-              <div class="label">
-                停留时间
-              </div>
-              <div class="value">
-                {{item.addTimeString | nowTime}}
-              </div>
-            </div>
-            <div class="item">
-              <div class="label">
-                跟踪器
-              </div>
-              <div class="value">
-                {{item.trackerName}}
-              </div>
-            </div>
-          </div>
-        </div>
-      </el-collapse-transition>
-    </div>
+    </el-scrollbar>
   </div>
 </template>
 
@@ -146,6 +151,9 @@
       }
     },
     methods: {
+      faka(item) {
+        this.$emit('faka', item)
+      },
       selectActive(index) {
         this.active = index
         this.activeCar = this.carLists[this.active]
@@ -176,6 +184,8 @@
 
 <style scoped lang="scss">
   .containers {
+    height: 550px;
+
     .car-info {
       margin-top: 8px;
 

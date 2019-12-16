@@ -49,7 +49,7 @@
   import {add} from '@/api/CarInformation'
 
   export default {
-    props: ['mapId'],
+    props: ['mapId', 'carValue'],
     name: 'register',
     data() {
       return {
@@ -73,8 +73,21 @@
     },
     created() {
       this.getTracker()
+      this.init()
     },
     methods: {
+      init() {
+        if (this.carValue) {
+          this.form.idCard = JSON.parse(JSON.stringify(this.carValue)).idCard
+          this.form.pilot = JSON.parse(JSON.stringify(this.carValue)).pilot
+          this.form.police = JSON.parse(JSON.stringify(this.carValue)).police
+          this.form.mobile = JSON.parse(JSON.stringify(this.carValue)).mobile
+          // this.form.positionDeviceId = JSON.parse(JSON.stringify(this.carValue)).positionDeviceId
+          this.form.cause = JSON.parse(JSON.stringify(this.carValue)).cause
+          this.form.license = JSON.parse(JSON.stringify(this.carValue)).license
+          this.form.carById = JSON.parse(JSON.stringify(this.carValue)).id
+        }
+      },
       // 获取跟踪器
       getTracker() {
         trackerById(this.mapId).then(response => {
