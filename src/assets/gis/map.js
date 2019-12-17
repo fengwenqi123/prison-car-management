@@ -1,6 +1,6 @@
 import {View, Map} from 'ol'
 import {defaults} from 'ol/control/util.js'
-import mapconfig from '@/utils/mapconfig.js'
+import mapconfig from '@/utils/mapconfig_slp.js'
 import {ScaleLine, MousePosition} from 'ol/control'
 import {createStringXY} from 'ol/coordinate'
 import {defaults as Idefaults} from 'ol/interaction'
